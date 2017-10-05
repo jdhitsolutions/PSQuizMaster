@@ -15,4 +15,6 @@ Store long term test results somewhere.
 
 Create WPF front ends for creating and taking tests
 
-*last updated September 18, 2017*p
+Incorporate my dynamically generated PSQuiz script as a separate command.
+
+*last updated 5 October 2017*
