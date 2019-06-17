@@ -1,5 +1,5 @@
 #load functions
 
-. $PSScriptRoot/PSQuizMasterFunctions.ps1
+. (Join-path -path $PSScriptRoot -childpath PSQuizMasterFunctions.ps1)
+. (Join-path -path $PSScriptRoot -childpath private.ps1)
 
-Export-ModuleMember -Function Invoke-PSQuiz,Get-PSQuiz,New-PSQuizQuestion,Invoke-PSQuickQuiz
