@@ -41,7 +41,7 @@ $('-'*75)
         $cue += "[$i]  Quit`n"
         $cue += $('-' * 75)
         Write-Host $Title -ForegroundColor Cyan
-        Write-Host ("Question {0}/{1}" -f $QuestionCount, $allcount) -ForegroundColor green
+        Write-Host ("Question {0}/{1}" -f $QuestionCount, $AllCount) -ForegroundColor green
         Write-Host $cue
 
         $count = $Distractors.count + 1

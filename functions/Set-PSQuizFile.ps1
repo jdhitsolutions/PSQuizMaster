@@ -28,7 +28,7 @@ Function Set-PSQuizFile {
         [String]$Description,
         [ValidateNotNullOrEmpty()]
         [Parameter(HelpMessage = 'Enter an optional update value. The default is today.')]
-        [String]$Updated = $(Get-Date).ToShortDateString(),
+        [String]$Updated = $(Get-Date),
         [Parameter(HelpMessage = 'Enter in a one or more question items')]
         [ValidateNotNullOrEmpty()]
         [object[]]$Question
@@ -46,7 +46,7 @@ Function Set-PSQuizFile {
             $content.metadata.$_ = $PSBoundParameters.Item($_)
         }
         #set the date in metadata
-        $content.metadata.updated = $Updated
+        $content.metadata.updated = "{0:u}" -f $Updated.ToUniversalTime()
 
         if ($content.questions) {
             Write-Verbose 'Appending to existing questions'
@@ -54,7 +54,7 @@ Function Set-PSQuizFile {
         }
         else {
             Write-Verbose 'Defining new questions'
-            $content | Add-Member -MemberType NoteProperty -Name questions -Value $question
+            $content | Add-Member -MemberType NoteProperty -Name questions -Value $question -Force
         }
 
         $set = [PSCustomObject]@{

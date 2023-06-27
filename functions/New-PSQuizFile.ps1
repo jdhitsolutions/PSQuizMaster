@@ -14,7 +14,7 @@ Function New-PSQuizFile {
         [Parameter(
             Position = 1,
             Mandatory,
-            HelpMessage = 'Enter your quiz short name which will be used as part of the filename'
+            HelpMessage = 'Enter your quiz short name which will be used as part of the filename.'
         )]
         [ValidateNotNullOrEmpty()]
         [String]$ShortName,
@@ -62,21 +62,22 @@ Function New-PSQuizFile {
     Write-Verbose 'Using these parameter values'
     $MyInvocation.BoundParameters | Out-String | Write-Verbose
 
-    $QuizPath = Join-Path -Path $PSQuizPath -ChildPath "$shortname.quiz.json"
+    $QuizPath = Join-Path -Path $Path -ChildPath "$shortname.quiz.json"
     $MetaHash = [ordered]@{
         name        = $Name
         author      = $author
         description = $description
         version     = $version.ToString()
         id          = (New-Guid).guid
-        updated     = (Get-Date).ToShortDateString()
+        updated     = "{0:u}" -f (Get-Date).ToUniversalTime()
     }
-    $MetaData = [PSCustomObject]@{
-        MetaData = $MetaHash
+    $QuizFile = [PSCustomObject]@{
+        metadata = $MetaHash
+        questions = @()
     }
 
     if ($PSCmdlet.ShouldProcess($QuizPath, "Create Quiz file $Name by $Author [$version]")) {
-        $MetaData | ConvertTo-Json | Out-File -FilePath $QuizPath -Encoding $encoding -NoClobber:$noclobber
+        $QuizFile | ConvertTo-Json | Out-File -FilePath $QuizPath -Encoding $encoding -NoClobber:$NoClobber
         #give the file an opportunity to close
         Start-Sleep -Seconds 1
         #write the file object to the pipeline

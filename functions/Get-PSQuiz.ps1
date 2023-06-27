@@ -10,7 +10,13 @@ Function Get-PSQuiz {
     Write-Verbose "Searching for quizzes under $PSQuizPath"
     Get-ChildItem -Path $Path -Filter '*.quiz.json' -PipelineVariable pv | ForEach-Object {
         $json = Get-Content -Path $_.FullName | ConvertFrom-Json
-        $json.metadata | Select-Object -Property *, @{Name = 'Path'; Expression = { $pv.FullName } }
+        $json.metadata | Select-Object -Property @{Name="Name"; Expression = { $_.name }},
+        @{Name='Author'; Expression = { $_.author }},
+        @{Name='Version'; Expression = { $_.version }},
+        @{Name='Description'; Expression = { $_.description }},
+        @{Name='Questions'; Expression = { $json.questions.count }},
+        @{Name='Updated'; Expression = { $_.updated -as [DateTime] }},
+        @{Name = 'Path'; Expression = { $pv.FullName } }
     }
     Write-Verbose "Ending $($MyInvocation.MyCommand)"
 }

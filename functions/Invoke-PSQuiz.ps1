@@ -1,6 +1,7 @@
 #load a quiz from a json file
 Function Invoke-PSQuiz {
     [CmdletBinding()]
+    [OutputType("pzQuizResult")]
     Param(
         [Parameter(Position = 0, Mandatory)]
         [ValidateScript( { Test-Path $_ })]
@@ -38,7 +39,7 @@ Function Invoke-PSQuiz {
         }
         Pause
     }
-
+    #This is the output from this function
     [PSCustomObject]@{
         PSTypeName     = 'psQuizResult'
         Test           = $in.metadata.Name

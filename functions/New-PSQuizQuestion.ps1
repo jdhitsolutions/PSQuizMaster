@@ -3,13 +3,28 @@ Function New-PSQuizQuestion {
     [CmdletBinding()]
     [OutputType('psQuizItem')]
     Param(
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, HelpMessage = 'Enter the question text')]
+        [Parameter(
+            Mandatory,
+            ValueFromPipelineByPropertyName,
+            HelpMessage = 'Enter the question text'
+            )]
         [String]$Question,
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, HelpMessage = "Enter the answer. Enclose in single quotes if using a variable or `$_. Or escape the `$.")]
+        [Parameter(
+            Mandatory,
+            ValueFromPipelineByPropertyName,
+            HelpMessage = "Enter the answer. Enclose in single quotes if using a variable or `$_. Or escape the `$."
+            )]
         [String]$Answer,
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, HelpMessage = 'Enter an array of distractors. Do NOT include your answer. 3-5 destractors is a good target.')]
+        [Parameter(
+            Mandatory,
+            ValueFromPipelineByPropertyName,
+            HelpMessage = 'Enter an array of distractors. Do NOT include your answer. 3-5 distractors is a good target.'
+            )]
         [string[]]$Distractors,
-        [Parameter(ValueFromPipelineByPropertyName, HelpMessage = "Enter an optional note to be displayed on correct answers. Enclose in single quotes if using a variable or `$_. Or escape the `$.")]
+        [Parameter(
+            ValueFromPipelineByPropertyName,
+            HelpMessage = "Enter an optional note to be displayed on correct answers. Enclose in single quotes if using a variable or `$_. Or escape the `$."
+            )]
         [String]$Note
     )
 
