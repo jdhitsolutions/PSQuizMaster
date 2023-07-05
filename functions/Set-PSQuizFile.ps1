@@ -1,19 +1,24 @@
+#update a quiz file with new metadata and or questions
 Function Set-PSQuizFile {
-    #update a quiz file with new metadata and or questions
     [CmdletBinding(SupportsShouldProcess)]
     Param(
-        [Parameter(HelpMessage = 'Enter the path or directory to store the quiz json file.')]
+        [Parameter(
+            Position = 0,
+            Mandatory,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName,
+            HelpMessage = 'Enter the path of the quiz json file.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( {
-            if (Test-Path -Path $_) {
-                return $True
-            }
-            else {
-                Throw "Can't verify $_ as a valid path."
-                Return $false
-            }
-        })]
-        [String]$Path = $PSQuizPath,
+                if (Test-Path -Path $_) {
+                    return $True
+                }
+                else {
+                    Throw "Can't verify $_ as a valid path."
+                    Return $false
+                }
+            })]
+        [String]$Path,
         [Parameter(HelpMessage = 'Enter a new name for your quiz')]
         [ValidateNotNullOrEmpty()]
         [String]$Name,
@@ -28,31 +33,33 @@ Function Set-PSQuizFile {
         [String]$Description,
         [ValidateNotNullOrEmpty()]
         [Parameter(HelpMessage = 'Enter an optional update value. The default is today.')]
-        [String]$Updated = $(Get-Date),
+        [DateTime]$Updated = $(Get-Date),
         [Parameter(HelpMessage = 'Enter in a one or more question items')]
         [ValidateNotNullOrEmpty()]
         [object[]]$Question
     )
     Begin {
         Write-Verbose "Starting $($MyInvocation.MyCommand)"
-        Write-Verbose "Getting file content from $Path - converted to json"
-        $content = Get-Content -Path $Path | ConvertFrom-Json
     } #begin
     Process {
+        Write-Verbose "Getting file content from $Path - converted to json"
+        $content = Get-Content -Path $Path | ConvertFrom-Json
         Write-Verbose 'Updating metadata'
         $PSBoundParameters.Keys.toLower() | Where-Object { $_ -match 'name|author|version|description' } |
         ForEach-Object {
-            Write-Verbose "...$_"
+            Write-Verbose "...$_ $($PSBoundParameters.Item($_))"
             $content.metadata.$_ = $PSBoundParameters.Item($_)
         }
         #set the date in metadata
-        $content.metadata.updated = "{0:u}" -f $Updated.ToUniversalTime()
+        $updateTime = '{0:u}' -f $Updated.ToUniversalTime()
+        Write-Verbose "Setting update time to $updateTime"
+        $content.metadata.updated = $updateTime
 
-        if ($content.questions) {
+        if ($content.questions -AND $PSBoundParameters.ContainsKey('question')) {
             Write-Verbose 'Appending to existing questions'
             $content.questions += $question
         }
-        else {
+        elseif ($PSBoundParameters.ContainsKey('question')) {
             Write-Verbose 'Defining new questions'
             $content | Add-Member -MemberType NoteProperty -Name questions -Value $question -Force
         }
@@ -62,7 +69,7 @@ Function Set-PSQuizFile {
             questions = $content.questions
         }
         if ($PSCmdlet.ShouldProcess($path)) {
-            $set | ConvertTo-Json -depth 5 | Out-File -FilePath $Path -Encoding Unicode -Force
+            $set | ConvertTo-Json -Depth 5 | Out-File -FilePath $Path -Encoding Unicode -Force
         }
     } #process
     End {

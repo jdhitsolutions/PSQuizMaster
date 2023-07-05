@@ -1,0 +1,47 @@
+<!--
+Format type data generated 07/05/2023 13:13:33 by PROSPERO\Jeff
+
+This file was created using the New-PSFormatXML command that is part
+of the PSScriptTools module.
+
+https://github.com/jdhitsolutions/PSScriptTools
+-->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <!--Created 07/05/2023 13:13:33 by PROSPERO\Jeff-->
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>psQuizItem</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <!--
+            By default the entries use property names, but you can replace them with scriptblocks.
+            <ScriptBlock>$_.foo /1mb -as [int]</ScriptBlock>
+-->
+              <ListItem>
+                <Label>question</Label>
+                <PropertyName>question</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>answer</Label>
+                <PropertyName>answer</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>distractors</Label>
+                <PropertyName>distractors</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>note</Label>
+                <PropertyName>note</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

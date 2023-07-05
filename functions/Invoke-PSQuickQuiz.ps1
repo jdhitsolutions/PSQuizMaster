@@ -1,64 +1,5 @@
 Function Invoke-PSQuickQuiz {
 
-    <#
-.Synopsis
-Run a PowerShell quiz
-.Description
-Use this script to test your knowledge of PowerShell commands, which given the Verb-Noun naming pattern should be pretty easy.
-
-The default behavior is to use all cmdlets and functions from installed modules with an option to exclude an array of module names. Wildcards are allowed. You also have the option to specify a single module for testing.
-
-
-.Example
-PS C:\> Invoke-PSQuickQuiz
-
-PowerShell Pop Quiz
-
-Given this short cmdlet description:
-
- Creates a new System.Windows.Markup.RoutedEventConverter
-
- What command would you use?
-
-  [1]   Invoke-CauScan
-  [2]   Clear-Tpm
-  [3]   Remove-WindowsCapability
-  [4]   Get-IscsiTargetServerSetting
-  [5]   New-RoutedEventConverter
-
-Select a menu choice [1-5]: 5
-
-You are Correct!!
-
-Do you want another question? Press any key to continue or Q to quit: q
-You scored 1 correct out of 1 for a GPA of 5. Your grade is A.
-.Example
-PS C:\> Invoke-PSQuickQuiz -module Hyper-V
-
-Launch the quiz but only use commands from the Hyper-V module.
-
-.Example
-PS C:\> Invoke-PSQuickQuiz -exclude ISE,WPK,my*
-
-Launch the quiz using all modules except ISE, WPK and any modules that start with 'my'.
-
-.Example
-PS C:\> Invoke-PSQuickQuiz -exclude ISE,WPK,my* -path c:\work\quiz.txt
-
-Launch the quiz using all modules except ISE, WPK and any modules that start with 'my'. Record results in a transcript file, C:\Work\quiz.txt.
-
-.Link
-Get-Help
-.Link
-Get-Command
-.Notes
-Version 0.9.1
-
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-PowerShell-resources/
-
-
-#>
     [CmdletBinding(DefaultParameterSetName = 'all')]
     Param(
         [Parameter(ParameterSetName = 'single')]
@@ -72,15 +13,15 @@ http://jdhitsolutions.com/blog/essential-PowerShell-resources/
         [Switch]$NextQuestion,
         [Parameter(HelpMessage = 'Enter a path and filename for a quiz transcript.')]
         [ValidateScript( {
-                $parent = Split-Path $_
-                if (Test-Path $parent) {
-                    return $True
-                }
-                else {
-                    Throw "Failed to find $parent for your transcript."
-                    return $false
-                }
-            })]
+            $parent = Split-Path $_
+            if (Test-Path $parent) {
+                return $True
+            }
+            else {
+                Throw "Failed to find $parent for your transcript."
+                return $false
+            }
+        })]
         [alias('transcript')]
         [String]$Path
     )
@@ -168,7 +109,7 @@ $(($PSBoundParameters | Out-String).trim())
         Write-Verbose 'Getting supplemental commands for answers'
         While ($commands.count -lt 5) {
             $add = Get-Command -CommandType Cmdlet | Get-Random |
-            Where-Object { $commands.name -notcontains $_.name }
+            Where-Object { $commands.name -NotContains $_.name }
             $commands += $add
         }
     }
@@ -258,8 +199,5 @@ Given this short cmdlet description:
         Write-Verbose 'Invoking quiz'
         #Write-Verbose ($MyInvocation.MyCommand | Out-String)
         &$($MyInvocation.MyCommand) @PSBoundParameters
-
     }
-
-
 }

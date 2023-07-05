@@ -2,8 +2,9 @@
 Function Invoke-PSQuiz {
     [CmdletBinding()]
     [OutputType("pzQuizResult")]
+    [alias("Start-PSQuiz")]
     Param(
-        [Parameter(Position = 0, Mandatory)]
+        [Parameter(Position = 0, Mandatory, HelpMessage = 'Enter the full path to the quiz file')]
         [ValidateScript( { Test-Path $_ })]
         [String]$Path
     )
@@ -24,7 +25,6 @@ Function Invoke-PSQuiz {
     #$AllCount is used in the private Invoke-QuizQuestion function
     $AllCount = $AllQuestions.count
     foreach ($question in $AllQuestions) {
-        # Clear-Host
         $QuestionCount++
         $answer = $question | Invoke-QuizQuestion -title $title
         Write-Verbose "Answer = $answer"
