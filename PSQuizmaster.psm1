@@ -13,9 +13,14 @@ Register-ArgumentCompleter -CommandName Invoke-PSQuiz -ParameterName Path -Scrip
     Get-ChildItem -path $PSQuizPath -filter *quiz.json |
     Where-Object   { $_.Name -like "$wordToComplete*" } |
         ForEach-Object {
-            # completion text,listitem text,result type,Tooltip
+            # completion text,listItem text,result type,Tooltip
             [System.Management.Automation.CompletionResult]::new($_.fullName, $_.name, 'ParameterValue', $_.FullName)
         }
 }
+
+#Path to the JSON schema file
+# 'https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/master/psquiz.schema.json'
+
+$PSQuizSchema = "file:///c://scripts//psquizmaster//psquiz.schema.json"
 
 Export-ModuleMember -variable PSQuizPath

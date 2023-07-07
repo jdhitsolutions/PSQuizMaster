@@ -1,0 +1,165 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/object1688651416.json",
+    "title": "PSQuiz Schema",
+    "description": "Schema configuration for PSQuiz files that are part of the PSQuizMaster module.",
+    "type": "object",
+    "required": [
+        "metadata",
+        "questions"
+    ],
+    "properties": {
+        "metadata": {
+            "$id": "#root/metadata",
+            "title": "metadata",
+            "description": "Required metadata about the quiz",
+            "type": "object",
+            "required": [
+                "name",
+                "author",
+                "description",
+                "version",
+                "id",
+                "updated"
+            ],
+            "properties": {
+                "name": {
+                    "$id": "#root/metadata/name",
+                    "title": "name",
+                    "description": "What is the long name of the quiz",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "PowerShell Aliases",
+                        "Intro to PSRemoting"
+                    ],
+                    "pattern": "^.*$"
+                },
+                "author": {
+                    "$id": "#root/metadata/author",
+                    "title": "author",
+                    "description": "Enter the author's name or contact information.",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "Jeff Hicks"
+                    ],
+                    "pattern": "^.*$"
+                },
+                "description": {
+                    "$id": "#root/metadata/description",
+                    "title": "description",
+                    "description": "Enter a brief quiz description",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "A short quiz on using aliases in PowerShell."
+                    ],
+                    "pattern": "^.*$"
+                },
+                "version": {
+                    "$id": "#root/metadata/version",
+                    "title": "version",
+                    "description": "Enter a semantic version number",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "0.2.0",
+                        "1.0.2"
+                    ],
+                    "pattern": "^\\d+\\."
+                },
+                "id": {
+                    "$id": "#root/metadata/id",
+                    "title": "id",
+                    "description": "Enter a GUID id for the test",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "68d30b11-971e-4104-9d76-d862bcef6a37"
+                    ],
+                    "pattern": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
+                },
+                "updated": {
+                    "$id": "#root/metadata/updated",
+                    "title": "updated",
+                    "description": "Enter the last update time as UTC. \"{0:u}\" -f (Get-Date).ToUniversalTime()",
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "2023-06-27 22:26:48Z"
+                    ],
+                    "pattern": "^\\d{4}(\\-\\d{2}){2}\\s(\\d{2}:){2}\\d{2}Z$"
+                }
+            }
+        },
+        "questions": {
+            "$id": "#root/questions",
+            "title": "questions",
+            "description": "Enter an array of question objects",
+            "type": "array",
+            "default": [],
+            "items": {
+                "title": "items",
+                "type": "object",
+                "required": [
+                    "question",
+                    "answer",
+                    "distractors"
+                ],
+                "properties": {
+                    "question": {
+                        "$id": "#root/questions/items/question",
+                        "title": "question",
+                        "description": "Enter your multiple choice question.",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                            "What command will display currently defined PowerShell aliases?"
+                        ],
+                        "pattern": "^.*$"
+                    },
+                    "answer": {
+                        "$id": "#root/questions/items/answer",
+                        "title": "answer",
+                        "description": "Enter the answer",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                            "Get-Alias"
+                        ],
+                        "pattern": "^.*$"
+                    },
+                    "distractors": {
+                        "$id": "#root/questions/items/distractors",
+                        "title": "distractors",
+                        "description": "Enter a comma separated list of 3-5 wrong answers",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "$id": "#root/questions/items/distractors/items",
+                            "title": "items",
+                            "type": "string",
+                            "default": "",
+                            "examples": [
+                                "Show-Alias"
+                            ],
+                            "pattern": "^.*$"
+                        }
+                    },
+                    "note": {
+                        "$id": "#root/questions/items/note",
+                        "title": "note",
+                        "description": "Enter optional notes or information",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                            ""
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
