@@ -100,6 +100,22 @@ When you are done, you will see a summary of your results.
 
 ![Quiz results](assets/quiz-results.png)
 
+## PSQuizMaster Settings
+
+The default quiz location is determined by the value of the global `$PSQuizPath` variable. If you don't want to be constantly updating this variable every time you import the module, you can run `Set-PSQuizPath` and specify a new location.
+
+```powershell
+Set-PSQuizPath c:\work\quizzes
+```
+
+This will create a file under $HOME called `.psquizsettings.json` The path will be stored in this file. The next time you import the module, if this file exists, the module will use the saved location. You should not need to edit or do anything with this file other than manually delete it if you are no longer using this module.
+
+## Sample Quizzes
+
+The module contains several sample quizzes you can find in the [Quizzes](quizzes) folder. If you don't change the value of `$PSQuizPath` you should be able to find them with `Get-PSQuiz`.
+
+If you have changed the path location, you can use `Copy-PSSampleQuiz` to copy the samples to the new destination.
+
 ## PSQuickQuiz
 
 The module contains a command to dynamically generate a quiz based on commands found in one or more modules. This is a great way to test your knowledge of PowerShell commands.

@@ -133,6 +133,10 @@ Mode                 LastWriteTime         Length Name
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3OocjEC</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Set-PSQuizPath</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -279,6 +283,10 @@ Path        : C:\work\quizzes\remoting.quiz.json</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3OnLjFd</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-PSQuiz</maml:linkText>
         <maml:uri></maml:uri>
@@ -497,6 +505,10 @@ Your grade is A.</dev:code>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3Ome6tP</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Invoke-PSQuiz</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -593,6 +605,10 @@ Select a menu choice [1-5]:</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3OqhUKx</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-PSQuickQuiz</maml:linkText>
         <maml:uri></maml:uri>
@@ -698,6 +714,10 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3OjtLdk</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
@@ -1033,6 +1053,10 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/45jiosW</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>New-PSQuiz</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1206,6 +1230,10 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3Onr4rm</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>New-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1315,6 +1343,10 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/47nsYks</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-PSQuizPath</maml:linkText>
         <maml:uri></maml:uri>
@@ -1590,6 +1622,10 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/45kzFlt</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-PSQuiz</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1761,6 +1797,10 @@ C:\work\quizzes\</dev:code>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/45cm27E</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Copy-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>

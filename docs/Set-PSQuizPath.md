@@ -1,7 +1,7 @@
 ---
 external help file: PSQuizmaster-help.xml
 Module Name: PSQuizMaster
-online version:
+online version: https://bit.ly/45cm27E
 schema: 2.0.0
 ---
 
