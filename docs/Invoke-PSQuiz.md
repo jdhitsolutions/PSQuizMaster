@@ -76,6 +76,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+This command has an alias of Start-PSQuiz.
+
 ## RELATED LINKS
 
 [Invoke-PSQuickQuiz](Invoke-PSQuickQuiz.md)

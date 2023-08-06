@@ -13,15 +13,15 @@ Function Invoke-PSQuickQuiz {
         [Switch]$NextQuestion,
         [Parameter(HelpMessage = 'Enter a path and filename for a quiz transcript.')]
         [ValidateScript( {
-            $parent = Split-Path $_
-            if (Test-Path $parent) {
-                return $True
-            }
-            else {
-                Throw "Failed to find $parent for your transcript."
-                return $false
-            }
-        })]
+                $parent = Split-Path $_
+                if (Test-Path $parent) {
+                    return $True
+                }
+                else {
+                    Throw "Failed to find $parent for your transcript."
+                    return $false
+                }
+            })]
         [alias('transcript')]
         [String]$Path
     )
@@ -121,9 +121,9 @@ $(($PSBoundParameters | Out-String).trim())
 
 Given this short cmdlet description:
 
- $synopsis
+$synopsis
 
- What command would you use?
+What command would you use?
 
 
 "@

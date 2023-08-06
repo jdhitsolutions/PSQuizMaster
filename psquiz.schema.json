@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://example.com/object1688651416.json",
     "title": "PSQuiz Schema",
-    "description": "Schema configuration for PSQuiz files that are part of the PSQuizMaster module.",
+    "description": "Schema configuration for PSQuiz files that are part of the PSQuizMaster PowerShell module.",
     "type": "object",
     "required": [
         "metadata",

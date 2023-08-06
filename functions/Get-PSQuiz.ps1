@@ -1,6 +1,7 @@
 Function Get-PSQuiz {
     #list PSQuiz json files
     [CmdletBinding()]
+    [OutputType('psQuiz')]
     Param(
         [Parameter(Position = 0, HelpMessage = 'Specify a quiz name')]
         [ValidateNotNullOrEmpty()]
@@ -17,15 +18,20 @@ Function Get-PSQuiz {
         Write-Verbose "Searching for all quizzes under $PSQuizPath"
     }
 
-    $get = Get-ChildItem -Path $Path -Filter '*.quiz.json' -PipelineVariable pv | ForEach-Object {
+    $get = Get-ChildItem -Path $Path -Filter '*.quiz.json' -PipelineVariable pv |
+    ForEach-Object {
         $json = Get-Content -Path $_.FullName | ConvertFrom-Json
-        $json.metadata | Select-Object -Property @{Name = 'Name'; Expression = { $_.name } },
-        @{Name = 'Author'; Expression = { $_.author } },
-        @{Name = 'Version'; Expression = { $_.version } },
-        @{Name = 'Description'; Expression = { $_.description } },
-        @{Name = 'Questions'; Expression = { $json.questions.count } },
-        @{Name = 'Updated'; Expression = { $_.updated -as [DateTime] } },
-        @{Name = 'Path'; Expression = { $pv.FullName } }
+        #create a typed custom object for the format file
+        [PSCustomObject]@{
+            PSTypeName  = 'psQuiz'
+            Name        = $json.metadata.name
+            Author      = $json.metadata.author
+            Version     = $json.metadata.version
+            Description = $json.metadata.description
+            Questions   = $json.questions.count
+            Updated     = $json.metadata.updated -as [DateTime]
+            Path        = $pv.FullName
+        }
     } #foreach-object
 
     Write-Verbose "Found $($get.count) total quizzes"

@@ -1,10 +1,29 @@
 #load functions
 
 $FunFolder =Join-path -path $PSScriptRoot -ChildPath functions
+
 Get-ChildItem -Path $FunFolder -filter *.ps1 |
 ForEach-Object { . $_.FullName}
 
-$PSQuizPath = Join-Path -Path $PSScriptRoot -ChildPath "quizzes"
+#this is a private variable not exposed to the user
+$PSQuizSettingsFile = Join-Path -Path $HOME -ChildPath '.psquizsettings.json'
+
+if (Test-Path -path $PSQuizSettingsFile) {
+    $PSQuizSettings = Get-Content -path $PSQuizSettingsFile | ConvertFrom-Json
+    Set-Variable -name PSQuizPath -value $PSQuizSettings.PSQuizPath
+}
+else {
+    Set-Variable -name PSQuizPath -value (Join-Path -Path $PSScriptRoot -ChildPath "quizzes")
+}
+
+#Path to the JSON schema file
+#this is an internal variable
+#THIS WON'T WORK WHILE THE REPO IS PRIVATE
+#$PSQuizSchema = 'https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema.json'
+
+$PSQuizSchema = "https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema.json"
+#for local testing
+# "file:///c://scripts//psquizmaster//psquiz.schema.json"
 
 Register-ArgumentCompleter -CommandName Invoke-PSQuiz -ParameterName Path -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
@@ -18,9 +37,4 @@ Register-ArgumentCompleter -CommandName Invoke-PSQuiz -ParameterName Path -Scrip
         }
 }
 
-#Path to the JSON schema file
-# 'https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/master/psquiz.schema.json'
-
-$PSQuizSchema = "file:///c://scripts//psquizmaster//psquiz.schema.json"
-
-Export-ModuleMember -variable PSQuizPath
+Export-ModuleMember -Variable PSQuizPath -Alias "Start-PSQuiz","Make-PSQuiz"

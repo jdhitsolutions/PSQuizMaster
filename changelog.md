@@ -1,39 +1,32 @@
 # Changelog for PSQuizmaster
 
-## v0.3.0
+## [Unreleased]
+
+## [0.4.0] - 2023-08-06
+### Added
+- Added format file `psquiz.format.ps1xml`.
+- Added argument completer for the `Path` parameter in `Set-PSQuizFile`.
+- Added support for a JSON schema for the quiz files.
+- Added command `Set-PSQuizPath`.
+- Added command `Remove-PSQuizSetting`.
+- Added command `Copy-PSSampleQuiz` to copy module sample quizzes to a new location.
 
 ### Changed
+- Modified `Get-PSQuiz` to output a typed object and updated the associated format.ps1xml file.
+- Modified manifest to reflect that this module should work in Windows PowerShell and PowerShell 7.
+- Updated help documentation.
+- Updated quiz JSON schema to use online source.
 
-- Changed parameter type for `Updated` in `Set-PSQuizFile` to `[datetime]` from `[string]`
-- Modified `Set-PSQuizFile` to accept pipeline input for the file name. Made the path mandatory
-
-### Added
-
-- Added parameter `Name` to `Get-PSQuizFile` to retrieve a quiz by name
-- Added alias `Start-PSQuiz` for `Invoke-PSQuiz`
-- Added command `New-PSQuiz` with an alias of `Make-PSQuiz`, to guide a quiz creator through the process of creating a quiz file with questions.
-- Added format file `psquizItem.format.ps1xml` to display quiz questions in a list format by default.
-
-## v0.2.0
-
-### Changed
-
-- re-organized module layout
-- Revised `New-PSQuizFile` to include a `Questions` property
-- Configured quiz files to use UTC time for timestamps. `"{0:u}" -f (Get-Date).ToUniversalTime()`
-
-### Added
-
-- Added `New-PSQuizQuestion`
-- Added `Set-PSQuizFile`
-- Added `New-PSQuizFile`
-- Added argument completer for `Invoke-PSQuiz`
-- Added Alias sample quiz
+- ## v0.3.0
 
 ### Fixed
-
+- Updated root module file to export command aliases.
+-
 - Fixed path bug in `New-PSQuizFile`
-
-## v0.1.0
-
+-
+- ## v0.1.0
+-
 - initial module files
+
+[Unreleased]: ENTER-URL-HERE
+[0.4.0]: ENTER-URL-HERE

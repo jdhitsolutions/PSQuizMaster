@@ -9,15 +9,18 @@ Function Set-PSQuizFile {
             ValueFromPipelineByPropertyName,
             HelpMessage = 'Enter the path of the quiz json file.')]
         [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter({
+            (Get-ChildItem -path $PSQuizPath -Filter *.json).fullName
+        })]
         [ValidateScript( {
-                if (Test-Path -Path $_) {
-                    return $True
-                }
-                else {
-                    Throw "Can't verify $_ as a valid path."
-                    Return $false
-                }
-            })]
+            if (Test-Path -Path $_) {
+                return $True
+            }
+            else {
+                Throw "Can't verify $_ as a valid path."
+                Return $false
+            }
+        })]
         [String]$Path,
         [Parameter(HelpMessage = 'Enter a new name for your quiz')]
         [ValidateNotNullOrEmpty()]
@@ -65,6 +68,7 @@ Function Set-PSQuizFile {
         }
 
         $set = [PSCustomObject]@{
+            '$schema' = $PSQuizSchema
             metadata  = $content.metadata
             questions = $content.questions
         }

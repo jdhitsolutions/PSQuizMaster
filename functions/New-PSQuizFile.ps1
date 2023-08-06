@@ -72,6 +72,7 @@ Function New-PSQuizFile {
         updated     = "{0:u}" -f (Get-Date).ToUniversalTime()
     }
     $QuizFile = [PSCustomObject]@{
+        '$schema' = $PSQuizSchema
         metadata = $MetaHash
         questions = @()
     }

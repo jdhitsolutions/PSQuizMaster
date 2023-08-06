@@ -28,35 +28,43 @@ Use this command to find quiz files. The default is to search for all quiz files
 ```powershell
 PS C:\>  Get-PSQuiz
 
-Name        : PowerShell Aliases
-Author      : Jeff Hicks
-Version     : 0.2.0
-Description : A short quiz on using aliases in PowerShell.
-Questions   : 2
-Updated     : 06/27/2023 18:26:48
-Path        : C:\Scripts\PSQuizMaster\quizzes\Aliases.quiz.json
+   Path: C:\work\quizzes\Aliases.quiz.json [7/7/2023 6:28:58 PM]
 
-Name        : PowerShell Remoting
-Author      : Jeff Hicks
-Version     : 0.1.0
-Description : A short quiz on PowerShell remoting concepts.
-Questions   : 2
-Updated     : 06/29/2023 10:21:21
-Path        : C:\Scripts\PSQuizMaster\quizzes\remoting.quiz.json
+Name                Version    Description                            Questions
+----                -------    -----------                            ---------
+PowerShell Aliases  0.6.0      A short quiz on using aliases ....             3
+
+   Path: C:\work\quizzes\demo.quiz.json [6/29/2023 9:15:26 AM]
+
+Name                Version    Description                            Questions
+----                -------    -----------                            ---------
+My Demo Quiz        0.3.0      This is a demo quiz file                       7
+
+   Path: C:\work\quizzes\pshelp.quiz.json [7/7/2023 6:29:22 PM]
+
+Name                Version    Description                            Questions
+----                -------    -----------                           ---------
+PowerShell Help     0.2.1      How to use help                                2
+
+   Path: C:\work\quizzes\remoting.quiz.json [7/5/2023 11:36:18 AM]
+
+Name                Version    Description                            Questions
+----                -------    -----------                            ---------
+PowerShell Remoting 0.2.1      A short quiz on PowerShell remoti...       .   5
 ```
 
 ### Example 2
 
 ```powershell
-PS C:\> Get-PSQuiz -Name "Powershell remoting"
+PS C:\> Get-PSQuiz -Name "Powershell remoting" | Format-List
 
 Name        : PowerShell Remoting
 Author      : Jeff Hicks
-Version     : 0.1.0
+Version     : 0.2.0
 Description : A short quiz on PowerShell remoting concepts.
-Questions   : 2
-Updated     : 06/29/2023 10:21:21
-Path        : C:\Scripts\PSQuizMaster\quizzes\remoting.quiz.json
+Questions   : 5
+Updated     : 7/5/2023 11:36:18 AM
+Path        : C:\work\quizzes\remoting.quiz.json
 ```
 
 ## PARAMETERS
@@ -103,7 +111,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### psQuiz
 
 ## NOTES
 

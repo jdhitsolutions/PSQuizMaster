@@ -2,12 +2,12 @@
 
 This PowerShell module consists of two parts, commands to generate quizzes or testing material, and commands for taking a test. Quiz files are stored as JSON documents.
 
-+ New-PSQuizQuestion
-+ Invoke-PSQuiz
-+ Invoke-PSQuickQuiz
-+ Get-PSQuiz
-+ Set-PSQuizFile
-+ New-PSQuiz
+- [New-PSQuizQuestion](docs/New-PSQuizQuestion.md)
+- [Invoke-PSQuiz](docs/Invoke-PSQuiz.md)
+- [Invoke-PSQuickQuiz](docs/Invoke-PSQuickQuiz.md)
+- [Get-PSQuiz](docs/Get-PSQuiz.md)
+- [Set-PSQuizFile](docs/Set-PSQuizFile.md)
+- [New-PSQuiz](docs/New-PSQuiz.md)
 
 ## Design
 
@@ -114,6 +114,6 @@ This will generate a dynamic quiz based on the commands found in the specified m
 
 ## Ideas and Project Road Map
 
-+ Check for the latest version of questions from a GitHub repository or path, including a UNC.
-+ Store long-term test results somewhere. Maybe use a database like SQLite, or maybe a JSON file.
-+ Create WPF or TUI front-ends for creating and taking quizzes.
+- Check for the latest version of questions from a GitHub repository or path, including a UNC.
+- Store long-term test results somewhere. Maybe use a database like SQLite, or maybe a JSON file.
+- Create WPF or TUI front-ends for creating and taking quizzes.
