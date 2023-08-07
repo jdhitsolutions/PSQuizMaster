@@ -675,7 +675,15 @@ Select a menu choice [1-5]:</dev:code>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>psQuiz</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -684,7 +692,7 @@ Select a menu choice [1-5]:</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>This command has an alias of Make-Quiz.</maml:para>
+        <maml:para>This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1020,7 +1028,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1225,6 +1233,13 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
 PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0.2.0</dev:code>
         <dev:remarks>
           <maml:para>Create a new question and then add it to a quiz file. The question Note is optional.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-PSQuizQuestion | ConvertTo-JSON | Set-Clipboard</dev:code>
+        <dev:remarks>
+          <maml:para>Run through the prompts to setup a new quiz question. The output will be converted to JSON and copied to the Windows clipboard. You can paste the question directly into the quizzes JSON file.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

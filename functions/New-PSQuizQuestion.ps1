@@ -41,7 +41,7 @@ Function New-PSQuizQuestion {
             question    = $Question
             answer      = $Answer
             distractors = $Distractors -as [array]
-            note        = $note
+            note        = $Note
         }
 
         $data

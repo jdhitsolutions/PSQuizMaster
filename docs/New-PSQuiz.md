@@ -77,11 +77,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
+
+### psQuiz
 
 ## NOTES
 
-This command has an alias of Make-Quiz.
+This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.
 
 ## RELATED LINKS
 

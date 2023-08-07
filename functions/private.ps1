@@ -14,7 +14,7 @@ Function Invoke-QuizQuestion {
         [string[]]$Distractors,
         [Parameter(ValueFromPipelineByPropertyName)]
         [String]$Note,
-        [String]$Title = "PowerShell Quiz"
+        [String]$Title = 'PowerShell Quiz'
     )
 
     Begin {
@@ -25,7 +25,7 @@ Function Invoke-QuizQuestion {
         Write-Verbose $Question
 
         Write-Verbose "Detected $($distractors.count) distractors"
-        $possible = @($Answer, $Distractors) | Get-Random -count ($Distractors.count + 1)
+        $possible = @($Answer, $Distractors) | Get-Random -Count ($Distractors.count + 1)
 
         $cue = @"
 
@@ -41,14 +41,14 @@ $('-'*75)
         $cue += "[$i]  Quit`n"
         $cue += $('-' * 75)
         Write-Host $Title -ForegroundColor Cyan
-        Write-Host ("Question {0}/{1}" -f $QuestionCount, $AllCount) -ForegroundColor green
+        Write-Host ('Question {0}/{1}' -f $QuestionCount, $AllCount) -ForegroundColor green
         Write-Host $cue
 
         $count = $Distractors.count + 1
         Write-Verbose "$count answers"
         Do {
             try {
-                [ValidateScript( {$_ -ge 1 -AND $_ -le $count + 1})][int32]$r = Read-Host -prompt "Select a menu choice [1-5]" -erroraction stop
+                [ValidateScript( { $_ -ge 1 -AND $_ -le $count + 1 })][int32]$r = Read-Host -Prompt 'Select a menu choice [1-5]' -ErrorAction stop
                 Write-Verbose "You entered $r"
             }
             Catch {
@@ -60,11 +60,11 @@ $('-'*75)
         } Until ($r -gt 0)
 
         if ($possible[$r - 1] -eq $answer) {
-            Write-Host "Correct!" -ForegroundColor green
+            Write-Host 'Correct!' -ForegroundColor green
             $True
         }
         elseif ($r -eq $count + 1) {
-            Write-Verbose "You selected Quit"
+            Write-Verbose 'You selected Quit'
             return -1
         }
         else {
@@ -74,7 +74,7 @@ $('-'*75)
 
         if ($Note) {
             Write-Host "`nAdditional Notes" -ForegroundColor yellow
-            Write-Host "----------------" -ForegroundColor yellow
+            Write-Host '----------------' -ForegroundColor yellow
             Write-Host $Note -ForegroundColor Yellow
             Write-Host "`n"
         }
@@ -86,31 +86,32 @@ $('-'*75)
 } #close function
 
 Function Get-GPA {
-        [CmdletBinding()]
-        Param([int32]$Correct, [int32]$Possible)
+    [CmdletBinding()]
+    Param([int32]$Correct, [int32]$Possible)
 
-        $grades = [ordered]@{
-            'A'  = 4
-            'A-' = 3.7
-            'B+' = 3.3
-            'B'  = 3
-            'B-' = 2.7
-            'C+' = 2.3
-            'C'  = 2.0
-            'C-' = 1.7
-            'D+' = 1.3
-            'D'  = 1
-            'D-' = .7
-            'F'  = 0
-        }
+    $grades = [ordered]@{
+        'A'  = 4
+        'A-' = 3.7
+        'B+' = 3.3
+        'B'  = 3
+        'B-' = 2.7
+        'C+' = 2.3
+        'C'  = 2.0
+        'C-' = 1.7
+        'D+' = 1.3
+        'D'  = 1
+        'D-' = .7
+        'F'  = 0
+    }
 
-        $pct = ($Correct / $Possible) * 100
-        $gpa = [math]::round(($pct / 20), 1)
-        $grade = $grades.GetEnumerator() | Where-Object {$_.value -le $gpa}  | Select-Object -first 1
+    $pct = ($Correct / $Possible) * 100
+    $gpa = [math]::round(($pct / 20), 1)
+    $grade = $grades.GetEnumerator() | Where-Object { $_.value -le $gpa } | Select-Object -First 1
 
-        [PSCustomObject]@{
-            Grade   = $grade.name
-            Minimum = $grade.Value
-            GPA     = $GPA
-        }
-    } #end function
+    [PSCustomObject]@{
+        Grade   = $grade.name
+        Minimum = $grade.Value
+        GPA     = $GPA
+    }
+} #end function
+

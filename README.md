@@ -1,5 +1,7 @@
 # PSQuizMaster
 
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/PSQuizMaster.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSQuizMaster/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSQuizMaster.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSQuizMaster/)
+
 This PowerShell module consists of two parts, commands to generate quizzes or testing material, and commands for taking a test. Quiz files are stored as JSON documents.
 
 - [New-PSQuizQuestion](docs/New-PSQuizQuestion.md)
@@ -8,6 +10,14 @@ This PowerShell module consists of two parts, commands to generate quizzes or te
 - [Get-PSQuiz](docs/Get-PSQuiz.md)
 - [Set-PSQuizFile](docs/Set-PSQuizFile.md)
 - [New-PSQuiz](docs/New-PSQuiz.md)
+
+You can install the module from the PowerShell Gallery.
+
+```powershell
+Install-Module PSQuizMaster
+```
+
+Most commands should work cross-platform.
 
 ## Design
 
@@ -88,6 +98,38 @@ Quiz files should follow the naming convention of `<shortname>.quiz.json`.
 
 You can also use the `New-PSQuizFile` command to create a quiz file and then use `New-PSQuizQuestion` to create questions. Add the questions to the file using `Set-PSQuizFile`.
 
+## Editor Integrations
+
+The module includes several editor-related features that you might find helpful. Especially if you find it easier or faster to create a quiz file by editing the JSON file directly.
+
+### Schema
+
+The JSON file includes a public schema. If you open the quiz JSON file in VS Code, you can get tab completion and assistance in adding questions to the file or adjusting the metadata. There is no reason to remove the schema reference in the file.
+
+### Editor Shortcuts
+
+When editing a quiz JSON file, the `Updated` property needs to follow a specific format. When you import this module in VSCode, you will get an additional module command called `Insert PSQuiz date.` Set your cursor in the JSON file where you have deleted the updated value. Open the command palette, select `Show Additional Commands from PowerShell Modules`, and then click `Insert PSQuiz Date.` The proper date string will be inserted into the file.
+
+In the PowerShell ISE, importing this module will create an Add-ons menu called `Insert Quiz UTC Date` that will achieve the same result.
+
+### UseEditor
+
+When using this module in the PowerShell ISE or VS Code, when running `New-PSQuiz` or `New-PSQuizFile`, you can use the `UseEditor` dynamic parameter. This will open the quiz JSON file in the current editor.
+
+```powershell
+New-PSQuizFile -Name "Using CIM" -ShortName cim -Path c:\work\quizzes -Author "Jeff Hicks" -Description "A quiz on using CIM in PowerShell" -UseEditor
+```
+
+![editor integration](assets/editor-integration.png)
+
+You could then use code like this to generate quiz questions.
+
+```PowerShell
+ New-PSQuizQuestion | ConvertTo-Json | Set-Clipboard
+```
+
+Paste the question into the JSON file and repeat.
+
 ## Taking a Quiz
 
 To take a quiz, use `Invoke-PSQuiz`. You need to specify the full path to the JSON file. By default, the function will tab-complete quiz files found in $PSQuizPath.
@@ -108,7 +150,7 @@ The default quiz location is determined by the value of the global `$PSQuizPath`
 Set-PSQuizPath c:\work\quizzes
 ```
 
-This will create a file under $HOME called `.psquizsettings.json` The path will be stored in this file. The next time you import the module, if this file exists, the module will use the saved location. You should not need to edit or do anything with this file other than manually delete it if you are no longer using this module.
+This will create a file under $HOME called `.psquizsettings.json` The path will be stored in this file. The next time you import the module, if this file exists, the module will use the saved location. You should not need to edit or do anything with this file. If you want to remove it, you should use `Remove-PSQuizSetting` which will delete the settings file and set the value of `$PSQuizPath` back to the module default.
 
 ## Sample Quizzes
 

@@ -32,6 +32,14 @@ PS C:\> Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0.2.
 
 Create a new question and then add it to a quiz file. The question Note is optional.
 
+### Example 2
+
+```powershell
+PS C:\> New-PSQuizQuestion | ConvertTo-JSON | Set-Clipboard
+```
+
+Run through the prompts to setup a new quiz question. The output will be converted to JSON and copied to the Windows clipboard. You can paste the question directly into the quizzes JSON file.
+
 ## PARAMETERS
 
 ### -Answer

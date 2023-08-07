@@ -18,8 +18,6 @@ else {
 
 #Path to the JSON schema file
 #this is an internal variable
-#THIS WON'T WORK WHILE THE REPO IS PRIVATE
-#$PSQuizSchema = 'https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema.json'
 
 $PSQuizSchema = "https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema.json"
 #for local testing
@@ -35,6 +33,25 @@ Register-ArgumentCompleter -CommandName Invoke-PSQuiz -ParameterName Path -Scrip
             # completion text,listItem text,result type,Tooltip
             [System.Management.Automation.CompletionResult]::new($_.fullName, $_.name, 'ParameterValue', $_.FullName)
         }
+}
+
+#add a VSCode menu item to insert the UTC date time into a quiz file
+If ($host.Name -eq 'Visual Studio Code Host') {
+    $sb = {
+        $utc = "{0:u}" -f (Get-Date).ToUniversalTime()
+        $Context = $psEditor.GetEditorContext()
+        $context.CurrentFile.InsertText($utc)
+    }
+    Register-EditorCommand -Name QuizDate -DisplayName "Insert PSQuiz date" -ScriptBlock $sb
+}
+elseif ($host.name -eq 'Windows PowerShell ISE Host') {
+    #add an ISE menu shortcut
+    $sb = {
+        $utc = "{0:u}" -f (Get-Date).ToUniversalTime()
+        $psise.CurrentFile.Editor.InsertText($utc)
+        }
+
+        [void]$psise.CurrentPowerShellTab.AddOnsMenu.Submenus.Add("Insert Quiz UTC Date",$sb,$null)
 }
 
 Export-ModuleMember -Variable PSQuizPath -Alias "Start-PSQuiz","Make-PSQuiz"
