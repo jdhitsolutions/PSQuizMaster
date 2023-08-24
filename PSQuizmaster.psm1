@@ -1,6 +1,6 @@
 #load functions
 
-$FunFolder =Join-path -path $PSScriptRoot -ChildPath functions
+$FunFolder =Join-Path -path $PSScriptRoot -ChildPath functions
 
 Get-ChildItem -Path $FunFolder -filter *.ps1 |
 ForEach-Object { . $_.FullName}
@@ -18,7 +18,6 @@ else {
 
 #Path to the JSON schema file
 #this is an internal variable
-
 $PSQuizSchema = "https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema.json"
 #for local testing
 # "file:///c://scripts//psquizmaster//psquiz.schema.json"
@@ -43,15 +42,69 @@ If ($host.Name -eq 'Visual Studio Code Host') {
         $context.CurrentFile.InsertText($utc)
     }
     Register-EditorCommand -Name QuizDate -DisplayName "Insert PSQuiz date" -ScriptBlock $sb
+
+    <#
+    #TODO fix these commands and create ISE equivalents
+    Function MaskQuizAnswer {
+        Param()
+
+        Function _hideAnswer {
+            Param([string]$Answer)
+            [regex]$word = '\S+'
+            #write-host "private $answer" -fore green
+            foreach ($part in $Answer) {
+                $word.Matches($part).Value.ForEach({
+                        $_.toCharArray().Foreach({ '{0:d3}' -f ($_ -as [int]) }) -join ''
+                    }) -join ' '
+            }
+        }
+
+        $Context = $psEditor.GetEditorContext()
+        $selected = [Microsoft.PowerShell.EditorServices.Extensions.FileRange, Microsoft.PowerShell.EditorServices]::new($Context.SelectedRange.Start, $Context.SelectedRange.end)
+        [string]$text = $Context.CurrentFile.GetText($selected)
+        write-host "masking $text [$($text.Length)]"
+        [string]$mask = _hideAnswer $text
+        write-host "with $mask"
+        $context.CurrentFile.InsertText($mask)
+    }
+
+    Register-EditorCommand -Name MaskQuizAnswer -DisplayName "Mask Quiz Answer" -Function MaskQuizAnswer
+
+    Function UnMaskQuizAnswer {
+        Param()
+        Function _showAnswer {
+            Param([string]$ProtectedAnswer)
+            [regex]$number = '\d{3}'
+            $out = foreach ($part in $ProtectedAnswer.split()) {
+                $number.Matches($part).Value.ForEach({
+                ([int]$_ -as [string][char])
+                }) -join ''
+            }
+            $out -join ' '
+        }
+
+        $Context = $psEditor.GetEditorContext()
+        $selected = [Microsoft.PowerShell.EditorServices.Extensions.FileRange, Microsoft.PowerShell.EditorServices]::new($Context.SelectedRange.Start, $Context.SelectedRange.end)
+        [string]$text = $Context.CurrentFile.GetText($selected)
+        $global:sel = $selected
+        write-host "unmasking $text [$($text.Length)]"
+        [string]$plain = _showAnswer $text
+        write-host "with $plain"
+        $context.CurrentFile.InsertText($plain)
+    }
+
+    Register-EditorCommand -Name UnmaskQuizAnswer -DisplayName "Unmask Quiz Answer" -Function UnMaskQuizAnswer
+
 }
 elseif ($host.name -eq 'Windows PowerShell ISE Host') {
     #add an ISE menu shortcut
     $sb = {
         $utc = "{0:u}" -f (Get-Date).ToUniversalTime()
-        $psise.CurrentFile.Editor.InsertText($utc)
+        $PSIse.CurrentFile.Editor.InsertText($utc)
         }
 
-        [void]$psise.CurrentPowerShellTab.AddOnsMenu.Submenus.Add("Insert Quiz UTC Date",$sb,$null)
+        [void]$PSIse.CurrentPowerShellTab.AddOnsMenu.Submenus.Add("Insert Quiz UTC Date",$sb,$null)
+} #>
 }
 
 Export-ModuleMember -Variable PSQuizPath -Alias "Start-PSQuiz","Make-PSQuiz"

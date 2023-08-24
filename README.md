@@ -10,6 +10,8 @@ This PowerShell module consists of two parts, commands to generate quizzes or te
 - [Get-PSQuiz](docs/Get-PSQuiz.md)
 - [Set-PSQuizFile](docs/Set-PSQuizFile.md)
 - [New-PSQuiz](docs/New-PSQuiz.md)
+- [Protect-PSQuizFile](docs/Protect-PSQuizFile.md)
+- [Unprotect-PSQuizFile](docs/Unprotect-PSQuizFile.md)
 
 You can install the module from the PowerShell Gallery.
 
@@ -97,6 +99,10 @@ This will create this JSON file.
 Quiz files should follow the naming convention of `<shortname>.quiz.json`.
 
 You can also use the `New-PSQuizFile` command to create a quiz file and then use `New-PSQuizQuestion` to create questions. Add the questions to the file using `Set-PSQuizFile`.
+
+## Protecting Quizzes
+
+Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process.
 
 ## Editor Integrations
 

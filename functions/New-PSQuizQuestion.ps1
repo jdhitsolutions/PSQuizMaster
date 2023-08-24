@@ -25,7 +25,9 @@ Function New-PSQuizQuestion {
             ValueFromPipelineByPropertyName,
             HelpMessage = "Enter an optional note to be displayed on correct answers. Enclose in single quotes if using a variable or `$_. Or escape the `$."
             )]
-        [String]$Note
+        [String]$Note,
+        [Parameter(HelpMessage = "Mask the answer so it is not displayed in plain text in the JSON file.")]
+        [switch]$MaskAnswer
     )
 
     Begin {
@@ -35,6 +37,12 @@ Function New-PSQuizQuestion {
         Write-Verbose "Processing quiz file $Path"
         Write-Verbose 'Using these bound parameters'
         $PSBoundParameters | Out-String | Write-Verbose
+
+        #Modified 8/15/2023 to allow for a masked answer. Issue #3
+        if ($MaskAnswer) {
+            Write-Verbose "Masking answer $Answer"
+            $Answer = _hideAnswer $Answer
+        }
         #create a copy of PSBoundParameters
         $Data = [PSCustomObject]@{
             PSTypeName  = 'psQuizItem'

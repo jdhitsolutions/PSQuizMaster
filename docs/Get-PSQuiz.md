@@ -13,7 +13,7 @@ Get quizzes from the default quiz path.
 
 ## SYNTAX
 
-```yaml
+```you
 Get-PSQuiz [[-Name] <String>] [-Path <String>] [<CommonParameters>]
 ```
 
@@ -56,7 +56,7 @@ PowerShell Remoting 0.2.1      A short quiz on PowerShell remoti...       .   5
 ### Example 2
 
 ```powershell
-PS C:\> Get-PSQuiz -Name "Powershell remoting" | Format-List
+PS C:\> Get-PSQuiz -Name "*remoting*" | Format-List
 
 Name        : PowerShell Remoting
 Author      : Jeff Hicks
@@ -67,6 +67,7 @@ Updated     : 7/5/2023 11:36:18 AM
 Path        : C:\work\quizzes\remoting.quiz.json
 ```
 
+You can use wildcards with the quiz name.
 ## PARAMETERS
 
 ### -Name
@@ -82,7 +83,7 @@ Required: False
 Position: 0
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Path
@@ -102,7 +103,6 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

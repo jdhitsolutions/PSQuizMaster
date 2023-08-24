@@ -1,9 +1,13 @@
+#list PSQuiz json files
 Function Get-PSQuiz {
-    #list PSQuiz json files
     [CmdletBinding()]
     [OutputType('psQuiz')]
     Param(
-        [Parameter(Position = 0, HelpMessage = 'Specify a quiz name')]
+        [Parameter(
+            Position = 0,
+            HelpMessage = 'Specify a quiz name'
+        )]
+        [SupportsWildcards()]
         [ValidateNotNullOrEmpty()]
         [string]$Name,
         [Parameter(HelpMessage = 'Enter the path to the folder with quiz json files')]
@@ -36,7 +40,7 @@ Function Get-PSQuiz {
 
     Write-Verbose "Found $($get.count) total quizzes"
     if ($Name) {
-        $get | Where-Object { $_.Name -match $Name }
+        $get | Where-Object { $_.Name -Like $Name }
     }
     else {
         $get

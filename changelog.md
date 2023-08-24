@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-08-24
+### Added
+
+- Added commands `Protect-PSQuizFile` and `Unprotect-PSQuizfile`, along with private helper functions, to mask or unmask answers. [[Issue #3](https://github.com/jdhitsolutions/functions/issues/3)]
+
+### Changed
+
+- Updated `Invoke-PSQuiz to start a quiz based on the quiz name. [[Issue #1](https://github.com/jdhitsolutions/PSQuizMaster/issues/1)]
+- Updated `Invoke-PSQuiz` to accept quiz by pipeline input.
+- Help documentation updates.
+- Modified `Get-PSQuiz` to better support wildcards for the quiz name. [[Issue #2](https://github.com/jdhitsolutions/PSQuizMaster/issues/2)]
+- Updated `README.md`.
+
 ## [1.0.0] - 2023-08-07
 
 This is the first version published to the PowerShell Gallery.
@@ -55,6 +68,7 @@ This is the first version published to the PowerShell Gallery.
 
 - initial module files
 
-[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.0.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.1.0..HEAD
+[1.1.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.0.0..v1.1.0
 [1.0.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v0.5.0..v1.0.0
 [0.5.0]: https://github.com/jdhitsolutions/PSQuizMaster/tree/v0.5.0

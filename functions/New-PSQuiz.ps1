@@ -10,7 +10,9 @@ Function New-PSQuiz {
             HelpMessage = 'Specify the folder for the new quiz file. The default is $PSQuizPath.'
         )]
         [ValidateScript({ Test-Path $_ })]
-        [string]$Path = $PSQuizPath
+        [string]$Path = $PSQuizPath,
+        [Parameter(HelpMessage = "Mask the answer so it is not displayed in plain text in the JSON file.")]
+        [switch]$MaskAnswer
     )
     DynamicParam {
         # Open the new file in the current editor
@@ -58,6 +60,11 @@ Function New-PSQuiz {
                 Answer      = Read-Host 'Enter the answer'
                 Distractors = (Read-Host 'Enter a comma-separated list of distractors') -split ','
                 Note        = Read-Host 'Enter any notes for this question'
+            }
+
+            if ($maskAnswer) {
+                Write-Verbose "Masking answer"
+                $newQuestionParams.Add('MaskAnswer',$true)
             }
             $questions.Add((New-PSQuizQuestion @newQuestionParams))
             $R = Read-Host 'Add another question? (Y/N)'

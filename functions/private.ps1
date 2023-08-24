@@ -24,6 +24,12 @@ Function Invoke-QuizQuestion {
     Process {
         Write-Verbose $Question
 
+        #Modified 8/15/2023 to allow for a masked answer. Issue #3
+        if ($answer -match "^[\s\d+]+$") {
+            Write-Verbose 'Unmasking Answer'
+            $answer = _showAnswer -ProtectedAnswer $answer
+        }
+
         Write-Verbose "Detected $($distractors.count) distractors"
         $possible = @($Answer, $Distractors) | Get-Random -Count ($Distractors.count + 1)
 
@@ -115,3 +121,59 @@ Function Get-GPA {
     }
 } #end function
 
+#functions to obfuscate the answer
+
+<#
+[regex]$word = "\b\S+\b"
+$message = "I am foo"
+$test = foreach ($part in $message) {
+ $word.Matches($part).Value.ForEach({
+    $_.toCharArray().Foreach({ "{0:d3}" -f ($_ -as [int])}) -join ''
+ }) -join ' '
+}
+
+
+[regex]$number = "\d{3}"
+$out = foreach ($part in $test.split()) {
+#write-host $part -fore cyan
+  $number.Matches($part).Value.ForEach({
+   ([int]$_ -as [string][char])
+  })  -join ''
+}
+$out -join ' '
+
+#>
+
+Function _hideAnswer {
+    Param([string]$Answer)
+    [regex]$word = '\S+'
+    foreach ($part in $Answer) {
+        $word.Matches($part).Value.ForEach({
+                $_.toCharArray().Foreach({ '{0:d3}' -f ($_ -as [int]) }) -join ''
+            }) -join ' '
+    }
+}
+
+Function _showAnswer {
+    Param([string]$ProtectedAnswer)
+    [regex]$number = '\d{3}'
+    $out = foreach ($part in $ProtectedAnswer.split()) {
+        $number.Matches($part).Value.ForEach({
+        ([int]$_ -as [string][char])
+        }) -join ''
+    }
+    $out -join ' '
+}
+
+Function _GetSelected {
+    $Context = $psEditor.GetEditorContext()
+    $selected = [Microsoft.PowerShell.EditorServices.Extensions.FileRange, Microsoft.PowerShell.EditorServices]::new($Context.SelectedRange.Start, $Context.SelectedRange.end)
+    [string]$text = $Context.CurrentFile.GetText($selected)
+    [PSCustomObject]@{
+        File = $Context.CurrentFile.Path
+        SelectedText = $text
+        Start = $Selected.Start
+        End = $selected.end
+        Context = $Context
+    }
+}
