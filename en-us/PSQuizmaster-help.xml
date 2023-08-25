@@ -664,6 +664,7 @@ Select a menu choice [1-5]:</dev:code>
     </command:details>
     <maml:description>
       <maml:para>This command serves as a kind of "wizard" to guide a quiz creator through the process of creating a quiz file with questions. You can modify the quiz file later by modifying the JSON file or using Set-PSQuizFile.</maml:para>
+      <maml:para>Use the MaskAnswer parameter if you want to hide the answers in the JSON file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -680,6 +681,17 @@ Select a menu choice [1-5]:</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MaskAnswer</maml:name>
+          <maml:description>
+            <maml:para>Mask the answer so it is not displayed in plain text in the JSON file. You can use Unprotect-PSQuizFile to unmask the answers.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -694,6 +706,18 @@ Select a menu choice [1-5]:</dev:code>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MaskAnswer</maml:name>
+        <maml:description>
+          <maml:para>Mask the answer so it is not displayed in plain text in the JSON file. You can use Unprotect-PSQuizFile to unmask the answers.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -770,6 +794,14 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-PSQuizFile</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Protect-PSQuizFile</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Unprotect-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -1303,6 +1335,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:details>
     <maml:description>
       <maml:para>PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating."</maml:para>
+      <maml:para>For best results, your answers should be in text and not a numeric answer. If you must use a numeric answer, it must not be three digits.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

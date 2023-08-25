@@ -32,10 +32,10 @@ Function Protect-PSQuizFile {
 
     Process {
         Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Protecting answers in $Path"
-        $quiz = Get-Content -path $Path| ConvertFrom-Json
+        $quiz = Get-Content -path $Path | ConvertFrom-Json
         foreach ($question in $quiz.questions) {
             #only hide answer if not already hidden
-            if ($question.answer -notMatch "^\d+$") {
+            if ($question.answer -notMatch "^(\d{3})+") {
                 Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] $($question.answer)"
                 $question.answer = _hideAnswer $question.Answer
             }

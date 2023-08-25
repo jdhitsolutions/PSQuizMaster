@@ -19,7 +19,7 @@ You can install the module from the PowerShell Gallery.
 Install-Module PSQuizMaster
 ```
 
-Most commands should work cross-platform.
+Most commands should work cross-platform. You can find an [introduction to this module on my blog](https://jdhitsolutions.com/blog/powershell/9260/friday-fun-with-psquizzes/).
 
 ## Design
 

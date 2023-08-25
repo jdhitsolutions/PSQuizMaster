@@ -14,12 +14,14 @@ Create a new quiz.
 ## SYNTAX
 
 ```yaml
-New-PSQuiz [[-Path] <String>] [<CommonParameters>]
+New-PSQuiz [[-Path] <String>] [-MaskAnswer] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 This command serves as a kind of "wizard" to guide a quiz creator through the process of creating a quiz file with questions. You can modify the quiz file later by modifying the JSON file or using Set-PSQuizFile.
+
+Use the MaskAnswer parameter if you want to hide the answers in the JSON file.
 
 ## EXAMPLES
 
@@ -67,8 +69,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### CommonParameters
+### -MaskAnswer
+Mask the answer so it is not displayed in plain text in the JSON file. You can use Unprotect-PSQuizFile to unmask the answers.
 
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -92,3 +108,7 @@ This command has an alias of Make-Quiz. If you run this command from within the 
 [New-PSQuizQuestion](New-PSQuizQuestion.md)
 
 [Set-PSQuizFile](Set-PSQuizFile.md)
+
+[Protect-PSQuizFile](Protect-PSQuizFile.md)
+
+[Unprotect-PSQuizFile](Unprotect-PSQuizfile.md)

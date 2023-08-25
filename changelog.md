@@ -2,6 +2,23 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2023-08-25
+### Added
+
+- Added format file `psquizresult.format.ps1xml`.
+- Added a `TestTime`, `TestVersion`, and `Path` properties to the quiz result from `Invoke-PSQuiz`.
+
+### Changed
+
+- Updated help for `New-PSQuiz` to reflect new parameters.
+- Updated `README.md`.
+- Updated help documentation.
+
+### Fixed
+
+- Updated masking and unmasking code to handle integer answers.
+- Fixed regex pattern in `Protect-PSQuizfile` and `Unprotect-PSQuizFile`.
+
 ## [1.1.0] - 2023-08-24
 ### Added
 
@@ -68,7 +85,8 @@ This is the first version published to the PowerShell Gallery.
 
 - initial module files
 
-[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.1.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.2.0..HEAD
+[1.2.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.0.0..v1.1.0
 [1.0.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v0.5.0..v1.0.0
 [0.5.0]: https://github.com/jdhitsolutions/PSQuizMaster/tree/v0.5.0

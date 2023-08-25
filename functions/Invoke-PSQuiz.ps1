@@ -16,18 +16,18 @@ Function Invoke-PSQuiz {
 
         [Parameter(
             ParameterSetName = 'name',
-            HelpMessage = "Specify the quiz name."
+            HelpMessage = 'Specify the quiz name.'
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
-            if (Get-PSQuiz -Name $_) {
-                $True
-            }
-            else {
-                Write-Warning "Can't find a quiz with the name in $PSQuizPath."
-                $False
-            }
-        })]
+                if (Get-PSQuiz -Name $_) {
+                    $True
+                }
+                else {
+                    Write-Warning "Can't find a quiz with the name in $PSQuizPath."
+                    $False
+                }
+            })]
         [String]$Name
     )
     Begin {
@@ -55,6 +55,10 @@ Function Invoke-PSQuiz {
         $AllQuestions = $in.questions | Get-Random -Count $in.questions.count
         #$AllCount is used in the private Invoke-QuizQuestion function
         $AllCount = $AllQuestions.count
+
+        #capture the quiz start time
+        $StartTime = Get-Date
+
         foreach ($question in $AllQuestions) {
             $QuestionCount++
             $answer = $question | Invoke-QuizQuestion -title $title
@@ -70,13 +74,19 @@ Function Invoke-PSQuiz {
             }
             Pause
         }
+
+        #capture the stop time
+        $StopTime = Get-Date
         #This is the output from this function
         [PSCustomObject]@{
             PSTypeName     = 'psQuizResult'
             Test           = $in.metadata.Name
+            TestVersion    = $in.metadata.version -as [Version]
             TotalQuestions = $QuestionCount
             TotalCorrect   = $CorrectCount
             Date           = (Get-Date)
+            TestTime       = New-TimeSpan -Start $StartTime -End $StopTime
+            Path           = Convert-Path $Path
         }
     } #process
     End {

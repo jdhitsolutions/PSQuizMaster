@@ -21,6 +21,7 @@ Protect-PSQuizFile [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 
 PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating."
 
+For best results, your answers should be in text and not a numeric answer. If you must use a numeric answer, it must not be three digits.
 ## EXAMPLES
 
 ### Example 1

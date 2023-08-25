@@ -1,0 +1,89 @@
+<!--
+Format type data generated 08/25/2023 11:29:50 by PROSPERO\Jeff
+
+This file was created using the New-PSFormatXML command that is part
+of the PSScriptTools module.
+
+https://github.com/jdhitsolutions/PSScriptTools
+-->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <!--Created 08/25/2023 11:29:50 by PROSPERO\Jeff-->
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>psQuizResult</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>Path</PropertyName>
+        <Label>Path</Label>
+      </GroupBy>
+      <TableControl>
+        <!--Delete the AutoSize node if you want to use the defined widths.
+        <AutoSize />-->
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Test</Label>
+            <Width>30</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Questions</Label>
+            <Width>11</Width>
+            <Alignment>right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Correct</Label>
+            <Width>11</Width>
+            <Alignment>right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>TestTime</Label>
+            <Width>19</Width>
+            <Alignment>right</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <ScriptBlock>
+                "{0} [{1}]" -f $_.test,$_.testversion
+                </ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>TotalQuestions</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>
+                <!-- display a color coded grade-->
+                if ($host.Name -match "code|console") {
+                  [double]$grade = ($_.TotalCorrect/$_.TotalQuestions)*100
+                  if ($grade -ge 75) {
+                    <!--green-->
+                    "$([char]27)[92m$($_.TotalCorrect)$([char]27)[0m"
+                  }
+                  elseif ($grade -ge 45) {
+                    <!--yellow-->
+                    "$([char]27)[93m$($_.TotalCorrect)$([char]27)[0m"
+                  }
+                  else {
+                    <!--red-->
+                    "$([char]27)[91m$($_.TotalCorrect)$([char]27)[0m"
+                  }
+                }
+                else {
+                  $_.Correct
+                }
+                </ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>TestTime</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

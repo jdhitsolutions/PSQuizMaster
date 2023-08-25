@@ -33,9 +33,10 @@ Function Unprotect-PSQuizFile {
         Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Unmasking answers in $Path"
         $quiz = Get-Content -Path $Path| ConvertFrom-Json
         foreach ($question in $quiz.questions) {
-            if ($question.answer -Match "^\d+$") {
-            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] $($question.answer)"
+            if ($question.answer -Match "^(\d{3})+") {
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] From: $($question.answer)"
             $question.answer = _showAnswer $question.Answer
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] To: $($question.answer)"
             }
         }
         $quiz | ConvertTo-Json -Depth 5 | Out-File -FilePath $Path -Encoding Unicode -Force
