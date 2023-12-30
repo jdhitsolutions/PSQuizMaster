@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ## [1.2.0] - 2023-08-25
+
 ### Added
 
 - Added format file `psquizresult.format.ps1xml`.
@@ -20,9 +21,10 @@
 - Fixed regex pattern in `Protect-PSQuizfile` and `Unprotect-PSQuizFile`.
 
 ## [1.1.0] - 2023-08-24
+
 ### Added
 
-- Added commands `Protect-PSQuizFile` and `Unprotect-PSQuizfile`, along with private helper functions, to mask or unmask answers. [[Issue #3](https://github.com/jdhitsolutions/functions/issues/3)]
+- Added commands `Protect-PSQuizFile` and `Unprotect-PSQuizFile`, along with private helper functions, to mask or unmask answers. [[Issue #3](https://github.com/jdhitsolutions/functions/issues/3)]
 
 ### Changed
 
@@ -35,6 +37,7 @@
 ## [1.0.0] - 2023-08-07
 
 This is the first version published to the PowerShell Gallery.
+
 ### Added
 
 - Added a dynamic parameter called `UseEditor` to `New-PSQuizFile` and `New-PSQuiz`. If running either command in VSCode or the PowerShell ISE, you can use the dynamic parameter open the new quiz file in the current editor.
