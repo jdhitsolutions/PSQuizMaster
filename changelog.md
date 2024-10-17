@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2024-10-17
+
+### Added
+
+- Added missing online help links.
+
+### Changed
+
+- Modify masking commands to also obfuscate or reveal distractors. [Issue #3](https://github.com/jdhitsolutions/PSQuizMaster/issues/3)
+- Updated `Invoke-PSQuickQuiz` to use `System.Collections.Generic.List[]` instead of an array.
+
 ## [1.2.0] - 2023-08-25
 
 ### Added
@@ -18,7 +29,7 @@
 ### Fixed
 
 - Updated masking and unmasking code to handle integer answers.
-- Fixed regex pattern in `Protect-PSQuizfile` and `Unprotect-PSQuizFile`.
+- Fixed regex pattern in `Protect-PSQuizFile` and `Unprotect-PSQuizFile`.
 
 ## [1.1.0] - 2023-08-24
 
@@ -88,7 +99,8 @@ This is the first version published to the PowerShell Gallery.
 
 - initial module files
 
-[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.2.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.3.0..HEAD
+[1.3.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.0.0..v1.1.0
 [1.0.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v0.5.0..v1.0.0

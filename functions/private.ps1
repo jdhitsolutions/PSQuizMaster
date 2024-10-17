@@ -31,6 +31,16 @@ Function Invoke-QuizQuestion {
         }
 
         Write-Verbose "Detected $($distractors.count) distractors"
+        #17 Oct 2024 unmask distractors if protected
+        $Distractors = foreach ($distractor in $Distractors) {
+            if ($distractor -match "^[\s\d+]+$") {
+                Write-Verbose "Unmasking distractor: $distractor"
+                _showAnswer -ProtectedAnswer $distractor
+            }
+            else {
+                $distractor
+            }
+        }
         $possible = @($Answer, $Distractors) | Get-Random -Count ($Distractors.count + 1)
 
         $cue = @"

@@ -101,6 +101,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.
 
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 ## RELATED LINKS
 
 [New-PSQuizFile](New-PSQuizFile.md)

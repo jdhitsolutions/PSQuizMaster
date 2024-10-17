@@ -170,6 +170,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 ## RELATED LINKS
 
 [Invoke-PSQuiz](Invoke-PSQuiz.md)

@@ -36,10 +36,20 @@ Function Protect-PSQuizFile {
         foreach ($question in $quiz.questions) {
             #only hide answer if not already hidden
             if ($question.answer -notMatch "^(\d{3})+") {
-                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] $($question.answer)"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Masking answer: $($question.answer)"
                 $question.answer = _hideAnswer $question.Answer
             }
-        }
+            #17 Oct 2024 mask distractors
+            $maskedDistractors = @()
+            foreach ($distractor in $question.distractors) {
+                if ($distractor -notMatch "^(\d{3})+") {
+                    Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Masking distractor: $($distractor)"
+                    $maskedDistractors += _hideAnswer $distractor
+                }
+            } #foreach distractor
+            #replace distractors with masked values
+            $question.distractors = $maskedDistractors
+        } #foreach question
         $quiz | ConvertTo-Json -Depth 5 | Out-File -FilePath $Path -Encoding Unicode -Force
     } #process
 

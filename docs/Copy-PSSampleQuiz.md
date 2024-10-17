@@ -32,9 +32,9 @@ PS C:\> Copy-PSSampleQuiz -Path C:\work\quizzes\
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---            7/6/2023 11:03 AM           2494 Aliases.quiz.json
--a---            7/7/2023  2:21 PM           6202 demo.quiz.json
--a---            7/7/2023  2:21 PM           4156 remoting.quiz.json
+-a---            7/6/2024 11:03 AM           2494 Aliases.quiz.json
+-a---            7/7/2024  2:21 PM           6202 demo.quiz.json
+-a---            7/7/2024  2:21 PM           4156 remoting.quiz.json
 ```
 
 ## PARAMETERS
@@ -103,6 +103,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.IO.FileInfo
 
 ## NOTES
+
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

@@ -1,5 +1,4 @@
 Function Invoke-PSQuickQuiz {
-
     [CmdletBinding(DefaultParameterSetName = 'all')]
     Param(
         [Parameter(ParameterSetName = 'single')]
@@ -7,9 +6,9 @@ Function Invoke-PSQuickQuiz {
         #You can specify a single module for testing. The default is all modules.
         [String]$ModuleName,
         [Parameter(ParameterSetName = 'all')]
-        #Enter a comma separated list of module names to ignore. You can use wildcards.
+        [Parameter(HelpMessage = 'Enter a comma separated list of module names to ignore. You can use wildcards.')]
         [string[]]$Exclude,
-        #This is used to indicate a continuing test. You should never need to use this parameter.
+        [Parameter(HelpMessage = 'This is used to indicate a continuing test. You should never need to use this parameter.')]
         [Switch]$NextQuestion,
         [Parameter(HelpMessage = 'Enter a path and filename for a quiz transcript.')]
         [ValidateScript( {
@@ -55,7 +54,7 @@ $(($PSBoundParameters | Out-String).trim())
         $global:CommandCache = @()
 
         if ($ModuleName) {
-            $Status = "Getting commands from module $modulename."
+            $Status = "Getting commands from module $ModuleName."
             Write-Verbose $Status
             Write-Progress -Activity $MyInvocation.MyCommand -Status $status -CurrentOperation 'Please wait...'
             $global:CommandCache = Get-Command -CommandType Cmdlet, Function -Module $ModuleName
@@ -101,8 +100,13 @@ $(($PSBoundParameters | Out-String).trim())
     } until ($synopsis -notmatch '(This cmdlet is not supported)|\[|(Fill in the Synopsis)' -AND $synopsis -match '\w{4,}')
 
     #get other noun related commands
-    [object[]]$commands = @($cmd)
-    $commands += Get-Command -Noun $cmd.noun | Where-Object { $_.name -ne $cmd.name } | Select-Object -First 4
+    #[object[]]$commands =
+    #@($cmd)
+    $commands = [System.Collections.Generic.List[object]]::New()
+    $commands.Add($cmd)
+
+    #$commands += Get-Command -Noun $cmd.noun | Where-Object { $_.name -ne $cmd.name } | Select-Object -First 4
+    Get-Command -Noun $cmd.noun | Where-Object { $_.name -ne $cmd.name } | Select-Object -First 4 | ForEach-Object { $commands.Add($_) }
 
     #get additional random commands if there are not enough noun-related
     if ($commands.count -lt 5) {
@@ -110,7 +114,8 @@ $(($PSBoundParameters | Out-String).trim())
         While ($commands.count -lt 5) {
             $add = Get-Command -CommandType Cmdlet | Get-Random |
             Where-Object { $commands.name -NotContains $_.name }
-            $commands += $add
+            # $commands += $add
+            $commands.Add($add)
         }
     }
     #randomize
@@ -156,6 +161,7 @@ What command would you use?
     if ($commands[$r - 1].name -eq $cmd.Name) {
         $global:CorrectCount++
         Write-Host "`nYou are Correct!!" -ForegroundColor green
+
         If ($Path) {
             Add-Content -Value "$($cmd.name) is correct!" -Path $Path
         }

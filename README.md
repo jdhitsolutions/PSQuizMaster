@@ -19,6 +19,12 @@ You can install the module from the PowerShell Gallery.
 Install-Module PSQuizMaster
 ```
 
+or
+
+```powershell
+Install-PSResource PSQuizMaster -Repository PSGallery -TrustRepository
+```
+
 Most commands should work cross-platform. You can find an [introduction to this module on my blog](https://jdhitsolutions.com/blog/powershell/9260/friday-fun-with-psquizzes/).
 
 ## Design
@@ -53,7 +59,7 @@ Author      : Jeff Hicks
 Version     : 0.1.0
 Description : A short quiz on PowerShell remoting concepts.
 Questions   : 2
-Updated     : 6/29/2023 10:21:21 AM
+Updated     : 6/29/2024 10:21:21 AM
 Path        : C:\Scripts\PSQuizMaster\quizzes\remoting.quiz.json
 ```
 
@@ -67,7 +73,7 @@ This will create this JSON file.
     "description": "A short quiz on PowerShell remoting concepts.",
     "version": "0.1.0",
     "id": "32248289-3ca9-4fb6-acde-524c809bf50e",
-    "updated": "2023-06-29 14:21:21Z"
+    "updated": "2024-06-29 14:21:21Z"
   },
   "questions": [
     {
@@ -102,7 +108,7 @@ You can also use the `New-PSQuizFile` command to create a quiz file and then use
 
 ## Protecting Quizzes
 
-Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process.
+Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process. Version 1.3.0 of this module also protects distractors.
 
 ## Editor Integrations
 

@@ -20,14 +20,14 @@ Function Invoke-PSQuiz {
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
-                if (Get-PSQuiz -Name $_) {
-                    $True
-                }
-                else {
-                    Write-Warning "Can't find a quiz with the name in $PSQuizPath."
-                    $False
-                }
-            })]
+            if (Get-PSQuiz -Name $_) {
+                $True
+            }
+            else {
+                Write-Warning "Can't find a quiz with the name in $PSQuizPath."
+                $False
+            }
+        })]
         [String]$Name
     )
     Begin {

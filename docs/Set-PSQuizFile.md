@@ -191,6 +191,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 ## RELATED LINKS
 
 [Get-PSQuiz](Get-PSQuiz.md)

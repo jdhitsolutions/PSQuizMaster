@@ -32,7 +32,7 @@ PS C:\>  New-PSQuizFile -Name "PowerShell Scripting" -ShortName scripting -Autho
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---          07/05/2023    13:03            580 scripting.quiz.json
+-a---          07/05/2024    13:03            580 scripting.quiz.json
 
 PS C:\> Get-Content D:\temp\scripting.quiz.json
 {
@@ -42,7 +42,7 @@ PS C:\> Get-Content D:\temp\scripting.quiz.json
     "description": "A quick quiz on PowerShell scripting",
     "version": "0.1.0",
     "id": "f3d3b784-b838-405e-84fb-594600c82189",
-    "updated": "2023-07-05 17:03:45Z"
+    "updated": "2024-07-05 17:03:45Z"
   },
   "questions": []
 }
@@ -229,6 +229,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.
+
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

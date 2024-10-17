@@ -1,7 +1,7 @@
 ---
 external help file: PSQuizmaster-help.xml
 Module Name: PSQuizMaster
-online version:
+online version: https://bit.ly/3S1ELPq
 schema: 2.0.0
 ---
 
@@ -19,25 +19,14 @@ Unprotect-PSQuizFile [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 
 ## DESCRIPTION
 
-If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers.
+If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers and distractors. If the file has not been protected, nothing will be done.
 
 ## EXAMPLES
 
 ### Example 1
 
 ```powershell
-PS C:\>  Unprotect-PSQuizFile C:\work\quizzes\remoting.quiz.json -Verbose
-VERBOSE: [09:00:47.4388741 BEGIN  ] Starting Unprotect-PSQuizFile
-VERBOSE: [09:00:47.4408880 BEGIN  ] Running under PowerShell version 5.1.22621.1037
-VERBOSE: [09:00:47.4428757 PROCESS] Unmasking answers in C:\work\quizzes\remoting.quiz.json
-VERBOSE: [09:00:47.4464409 PROCESS] 069110116101114045080083083101115115105111110
-VERBOSE: [09:00:47.4484036 PROCESS] 053057056053
-VERBOSE: [09:00:47.4503082 PROCESS] 087083077097110
-VERBOSE: [09:00:47.4513487 PROCESS] 078101119045080083083101115115105111110
-VERBOSE: [09:00:47.4543385 PROCESS] 082101109111116105110103 117115101115 097 115105110103108101 112111114116 097110100
- 105115 101110099114121112116101100 098121 100101102097117108116046
-VERBOSE: [09:00:47.4588974 PROCESS] 087083077097110
-VERBOSE: [09:00:47.4639022 END    ] Ending Unprotect-PSQuizFile
+PS C:\>  Unprotect-PSQuizFile C:\work\quizzes\remoting.quiz.json
 ```
 
 ## PARAMETERS
@@ -89,6 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -100,6 +90,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ## NOTES
+
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

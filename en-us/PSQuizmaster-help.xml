@@ -111,7 +111,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -123,9 +123,9 @@
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---            7/6/2023 11:03 AM           2494 Aliases.quiz.json
--a---            7/7/2023  2:21 PM           6202 demo.quiz.json
--a---            7/7/2023  2:21 PM           4156 remoting.quiz.json</dev:code>
+-a---            7/6/2024 11:03 AM           2494 Aliases.quiz.json
+-a---            7/7/2024  2:21 PM           6202 demo.quiz.json
+-a---            7/7/2024  2:21 PM           4156 remoting.quiz.json</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -231,7 +231,7 @@ Mode                 LastWriteTime         Length Name
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -447,7 +447,7 @@ Path        : C:\work\quizzes\remoting.quiz.json</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -607,6 +607,7 @@ Your grade is A.</dev:code>
     <maml:alertSet>
       <maml:alert>
         <maml:para>This command has an alias of Start-PSQuiz.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -751,6 +752,7 @@ Select a menu choice [1-5]:</dev:code>
     <maml:alertSet>
       <maml:alert>
         <maml:para>This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1095,6 +1097,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
     <maml:alertSet>
       <maml:alert>
         <maml:para>If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1106,7 +1109,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---          07/05/2023    13:03            580 scripting.quiz.json
+-a---          07/05/2024    13:03            580 scripting.quiz.json
 
 PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
 {
@@ -1116,7 +1119,7 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     "description": "A quick quiz on PowerShell scripting",
     "version": "0.1.0",
     "id": "f3d3b784-b838-405e-84fb-594600c82189",
-    "updated": "2023-07-05 17:03:45Z"
+    "updated": "2024-07-05 17:03:45Z"
   },
   "questions": []
 }</dev:code>
@@ -1289,7 +1292,7 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1330,11 +1333,11 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       <command:verb>Protect</command:verb>
       <command:noun>PSQuizFile</command:noun>
       <maml:description>
-        <maml:para>Mask answers in a PSQuiz file.</maml:para>
+        <maml:para>Mask answers and distractors in a PSQuiz file.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating."</maml:para>
+      <maml:para>PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers and distractors. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating."</maml:para>
       <maml:para>For best results, your answers should be in text and not a numeric answer. If you must use a numeric answer, it must not be three digits.</maml:para>
     </maml:description>
     <command:syntax>
@@ -1436,7 +1439,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1449,6 +1452,10 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3S1Iv3M</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Unprotect-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
@@ -1542,7 +1549,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1820,7 +1827,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1994,7 +2001,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -2033,7 +2040,7 @@ C:\work\quizzes\</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers.</maml:para>
+      <maml:para>If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers and distractors. If the file has not been protected, nothing will be done.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2134,30 +2141,23 @@ C:\work\quizzes\</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt;  Unprotect-PSQuizFile C:\work\quizzes\remoting.quiz.json -Verbose
-VERBOSE: [09:00:47.4388741 BEGIN  ] Starting Unprotect-PSQuizFile
-VERBOSE: [09:00:47.4408880 BEGIN  ] Running under PowerShell version 5.1.22621.1037
-VERBOSE: [09:00:47.4428757 PROCESS] Unmasking answers in C:\work\quizzes\remoting.quiz.json
-VERBOSE: [09:00:47.4464409 PROCESS] 069110116101114045080083083101115115105111110
-VERBOSE: [09:00:47.4484036 PROCESS] 053057056053
-VERBOSE: [09:00:47.4503082 PROCESS] 087083077097110
-VERBOSE: [09:00:47.4513487 PROCESS] 078101119045080083083101115115105111110
-VERBOSE: [09:00:47.4543385 PROCESS] 082101109111116105110103 117115101115 097 115105110103108101 112111114116 097110100
- 105115 101110099114121112116101100 098121 100101102097117108116046
-VERBOSE: [09:00:47.4588974 PROCESS] 087083077097110
-VERBOSE: [09:00:47.4639022 END    ] Ending Unprotect-PSQuizFile</dev:code>
+        <dev:code>PS C:\&gt;  Unprotect-PSQuizFile C:\work\quizzes\remoting.quiz.json</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3S1ELPq</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Protect-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
