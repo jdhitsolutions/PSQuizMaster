@@ -37,6 +37,12 @@ Function Unprotect-PSQuizFile {
                 Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] From: $($question.answer)"
                 $question.answer = _showAnswer $question.Answer
                 Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] To: $($question.answer)"
+                #19 June 2026 unmask notes
+                if ($question.note -Match '^(\d{3})+') {
+                    Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] From masked note: $($question.note)"
+                    $question.note = _showAnswer $question.note
+                    Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] To: $($question.note)"
+                }
             }
             #17 Oct 2024 mask distractors
             $unmaskedDistractors = @()

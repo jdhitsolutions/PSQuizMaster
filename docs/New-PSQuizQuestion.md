@@ -1,7 +1,7 @@
 ---
 external help file: PSQuizmaster-help.xml
 Module Name: PSQuizMaster
-online version: https://bit.ly/3Onr4rm
+online version: https://jdhitsolutions.com/yourls/b67096
 schema: 2.0.0
 ---
 
@@ -14,7 +14,7 @@ Create a new quiz question.
 ## SYNTAX
 
 ```yaml
-New-PSQuizQuestion [-Question] <String> [-Answer] <String> [-Distractors] <String[]> [[-Note] <String>] [<CommonParameters>]
+New-PSQuizQuestion [-Question] <String> [-Answer] <String> [-Distractors] <String[]> [[-Note] <String>] [-MaskAnswer] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -112,6 +112,21 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -MaskAnswer
+Mask the answer so it is not displayed in plain text in the JSON file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -129,7 +144,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+https://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

@@ -38,6 +38,8 @@ Function Protect-PSQuizFile {
             if ($question.answer -notMatch "^(\d{3})+") {
                 Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Masking answer: $($question.answer)"
                 $question.answer = _hideAnswer $question.Answer
+                #19 June 2026 hide the note
+                $question.note = _hideAnswer $question.note
             }
             #17 Oct 2024 mask distractors
             $maskedDistractors = @()

@@ -25,7 +25,7 @@ or
 Install-PSResource PSQuizMaster -Repository PSGallery -TrustRepository
 ```
 
-Most commands should work cross-platform. You can find an [introduction to this module on my blog](https://jdhitsolutions.com/blog/powershell/9260/friday-fun-with-psquizzes/).
+Most commands should work cross-platform.
 
 ## Design
 
@@ -37,21 +37,21 @@ The module commands will look for quiz files in the location defined in the glob
 
 The easiest way to create a quiz is to use the `New-PSQuiz` command. This will guide you through the process of creating a quiz file.
 
-```dos
+```powershell
 PS C:\> New-PSQuiz
 What is the full name of your quiz?: PowerShell Remoting
 What is the short quiz name? This will be used as part of the file name: remoting
 Enter a quiz description. You can always edit this later: A short quiz on PowerShell remoting
 Enter the author name: Jeff Hicks
-Enter the question: What command do you run to enter an interactive remoting session?
+Enter the question: What command should you run to enter an interactive remoting session?
 Enter the answer: Enter-PSSession
 Enter a comma-separated list of distractors: New-PSSession,New-CimSession,Enter-CimSession,Winrm
-Enter any notes for this question: Don't confuse PSSessions with CimSessions.
+Enter any notes for this question: Do not confuse PSSessions with CimSessions.
 Add another question? (Y/N): y
 Enter the question: What is the default PowerShell remoting port?
 Enter the answer: 5985
 Enter a comma-separated list of distractors: 5986,22,80,443
-Enter any notes for this question: If using SSL, the default port will be 5986.
+Enter any notes for this question: When using SSL, the default port will be 5986.
 Add another question? (Y/N): n
 
 Name        : PowerShell Remoting
@@ -59,7 +59,7 @@ Author      : Jeff Hicks
 Version     : 0.1.0
 Description : A short quiz on PowerShell remoting concepts.
 Questions   : 2
-Updated     : 6/29/2024 10:21:21 AM
+Updated     : 6/19/2026 10:21:21 AM
 Path        : C:\Scripts\PSQuizMaster\quizzes\remoting.quiz.json
 ```
 
@@ -73,11 +73,11 @@ This will create this JSON file.
     "description": "A short quiz on PowerShell remoting concepts.",
     "version": "0.1.0",
     "id": "32248289-3ca9-4fb6-acde-524c809bf50e",
-    "updated": "2024-06-29 14:21:21Z"
+    "updated": "2026-06-19 14:21:21Z"
   },
   "questions": [
     {
-      "question": "What command do you run to enter an interactive remoting session?",
+      "question": "What command should you run to enter an interactive remoting session?",
       "answer": "Enter-PSSession",
       "distractors": [
         "New-PSSession",
@@ -85,7 +85,7 @@ This will create this JSON file.
         "Enter-CimSession",
         "Winrm"
       ],
-      "note": "Don't confuse PSSessions with CimSessions."
+      "note": "Do not confuse PSSessions with CimSessions."
     },
     {
       "question": "What is the default PowerShell remoting port?",
@@ -96,7 +96,7 @@ This will create this JSON file.
         "80",
         "443"
       ],
-      "note": "If using SSL, the default port will be 5986."
+      "note": "When using SSL, the default port will be 5986."
     }
   ]
 }
@@ -109,6 +109,10 @@ You can also use the `New-PSQuizFile` command to create a quiz file and then use
 ## Protecting Quizzes
 
 Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process. Version 1.3.0 of this module also protects distractors.
+
+## Using the DSL
+
+TO BE COMPLETED
 
 ## Editor Integrations
 
@@ -174,7 +178,7 @@ If you have changed the path location, you can use `Copy-PSSampleQuiz` to copy t
 
 The module contains a command to dynamically generate a quiz based on commands found in one or more modules. This is a great way to test your knowledge of PowerShell commands.
 
-```dos
+```powershell
 PS C:\> Invoke-PSQuickQuiz -Module Microsoft.PowerShell.*
 ```
 
@@ -187,3 +191,7 @@ This will generate a dynamic quiz based on the commands found in the specified m
 - Check for the latest version of questions from a GitHub repository or path, including a UNC.
 - Store long-term test results somewhere. Maybe use a database like SQLite, or maybe a JSON file.
 - Create WPF or TUI front-ends for creating and taking quizzes.
+
+## Related Modules
+
+This module was created with PowerShell beginners in mind. You might also be interested in the [PSIntro](https://github.com/jdhitsolutions/PSIntro) module. The module includes a command to display a welcome splash screen of useful links. The module also includes a set of interactive tutorials on fundamental PowerShell topics.

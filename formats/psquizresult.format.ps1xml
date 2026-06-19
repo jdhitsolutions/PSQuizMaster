@@ -27,6 +27,11 @@ https://github.com/jdhitsolutions/PSScriptTools
             <Width>30</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
+           <TableColumnHeader>
+            <Label>Grade</Label>
+            <Width>6</Width>
+            <Alignment>Center</Alignment>
+          </TableColumnHeader>
           <TableColumnHeader>
             <Label>Questions</Label>
             <Width>11</Width>
@@ -48,8 +53,11 @@ https://github.com/jdhitsolutions/PSScriptTools
             <TableColumnItems>
               <TableColumnItem>
                 <ScriptBlock>
-                "{0} [{1}]" -f $_.test,$_.testversion
+                "{0} [{1}]" -f $_.test,$_.TestVersion
                 </ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>GPA</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>TotalQuestions</PropertyName>

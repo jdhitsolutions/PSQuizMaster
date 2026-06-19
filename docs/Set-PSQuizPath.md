@@ -1,7 +1,7 @@
 ---
 external help file: PSQuizmaster-help.xml
 Module Name: PSQuizMaster
-online version: https://bit.ly/45cm27E
+online version: https://jdhitsolutions.com/yourls/59002b
 schema: 2.0.0
 ---
 
@@ -119,7 +119,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+https://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

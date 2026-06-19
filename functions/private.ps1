@@ -1,15 +1,15 @@
 #private functions for this module
 
-Function Invoke-QuizQuestion {
+function Invoke-QuizQuestion {
     [CmdletBinding()]
-    Param(
-        [Parameter(mandatory, ValueFromPipelineByPropertyName)]
+    param(
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [ValidateNotNullOrEmpty()]
         [String]$Question,
-        [Parameter(mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [ValidateNotNullOrEmpty()]
         [String]$Answer,
-        [Parameter(mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [ValidateNotNullOrEmpty()]
         [string[]]$Distractors,
         [Parameter(ValueFromPipelineByPropertyName)]
@@ -17,23 +17,29 @@ Function Invoke-QuizQuestion {
         [String]$Title = 'PowerShell Quiz'
     )
 
-    Begin {
+    begin {
         Write-Verbose "Starting $($MyInvocation.MyCommand)"
     }
 
-    Process {
+    process {
         Write-Verbose $Question
 
         #Modified 8/15/2023 to allow for a masked answer. Issue #3
-        if ($answer -match "^[\s\d+]+$") {
+        if ($answer -match '^[\s\d+]+$') {
             Write-Verbose 'Unmasking Answer'
             $answer = _showAnswer -ProtectedAnswer $answer
+        }
+
+        #19 June 2026 Unmask Notes
+        if ($note -match '^[\s\d+]+$') {
+            Write-Verbose 'Unmasking Answer'
+            $note = _showAnswer -ProtectedAnswer $note
         }
 
         Write-Verbose "Detected $($distractors.count) distractors"
         #17 Oct 2024 unmask distractors if protected
         $Distractors = foreach ($distractor in $Distractors) {
-            if ($distractor -match "^[\s\d+]+$") {
+            if ($distractor -match '^[\s\d+]+$') {
                 Write-Verbose "Unmasking distractor: $distractor"
                 _showAnswer -ProtectedAnswer $distractor
             }
@@ -62,18 +68,18 @@ $('-'*75)
 
         $count = $Distractors.count + 1
         Write-Verbose "$count answers"
-        Do {
+        do {
             try {
-                [ValidateScript( { $_ -ge 1 -AND $_ -le $count + 1 })][int32]$r = Read-Host -Prompt 'Select a menu choice [1-5]' -ErrorAction stop
+                [ValidateScript( { $_ -ge 1 -and $_ -le $count + 1 })][int32]$r = Read-Host -Prompt "Select an answer [1-$($count+1)]" -ErrorAction stop
                 Write-Verbose "You entered $r"
             }
-            Catch {
+            catch {
                 #ignore the error
                 #Write-Warning $_.exception.message
                 Write-Warning "Please select a value between 1 and $($count+1)"
                 $r = 0
             }
-        } Until ($r -gt 0)
+        } until ($r -gt 0)
 
         if ($possible[$r - 1] -eq $answer) {
             Write-Host 'Correct!' -ForegroundColor green
@@ -95,15 +101,15 @@ $('-'*75)
             Write-Host "`n"
         }
     } #process
-    End {
+    end {
         Write-Verbose "Ending $($MyInvocation.MyCommand)"
     }
 
 } #close function
 
-Function Get-GPA {
+function Get-GPA {
     [CmdletBinding()]
-    Param([int32]$Correct, [int32]$Possible)
+    param([int32]$Correct, [int32]$Possible)
 
     $grades = [ordered]@{
         'A'  = 4
@@ -129,7 +135,7 @@ Function Get-GPA {
         Minimum = $grade.Value
         GPA     = $GPA
     }
-} #end function
+} #end Get-GPA
 
 #functions to obfuscate the answer
 
@@ -154,8 +160,8 @@ $out -join ' '
 
 #>
 
-Function _hideAnswer {
-    Param([string]$Answer)
+function _hideAnswer {
+    param([string]$Answer)
     [regex]$word = '\S+'
     foreach ($part in $Answer) {
         $word.Matches($part).Value.ForEach({
@@ -164,26 +170,26 @@ Function _hideAnswer {
     }
 }
 
-Function _showAnswer {
-    Param([string]$ProtectedAnswer)
+function _showAnswer {
+    param([string]$ProtectedAnswer)
     [regex]$number = '\d{3}'
     $out = foreach ($part in $ProtectedAnswer.split()) {
         $number.Matches($part).Value.ForEach({
-        ([int]$_ -as [string][char])
-        }) -join ''
+                ([int]$_ -as [string][char])
+            }) -join ''
     }
     $out -join ' '
 }
 
-Function _GetSelected {
+function _GetSelected {
     $Context = $psEditor.GetEditorContext()
     $selected = [Microsoft.PowerShell.EditorServices.Extensions.FileRange, Microsoft.PowerShell.EditorServices]::new($Context.SelectedRange.Start, $Context.SelectedRange.end)
     [string]$text = $Context.CurrentFile.GetText($selected)
     [PSCustomObject]@{
-        File = $Context.CurrentFile.Path
+        File         = $Context.CurrentFile.Path
         SelectedText = $text
-        Start = $Selected.Start
-        End = $selected.end
-        Context = $Context
+        Start        = $Selected.Start
+        End          = $selected.end
+        Context      = $Context
     }
 }

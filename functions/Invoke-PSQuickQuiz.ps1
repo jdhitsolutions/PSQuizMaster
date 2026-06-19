@@ -12,15 +12,15 @@ Function Invoke-PSQuickQuiz {
         [Switch]$NextQuestion,
         [Parameter(HelpMessage = 'Enter a path and filename for a quiz transcript.')]
         [ValidateScript( {
-                $parent = Split-Path $_
-                if (Test-Path $parent) {
-                    return $True
-                }
-                else {
-                    Throw "Failed to find $parent for your transcript."
-                    return $false
-                }
-            })]
+            $parent = Split-Path $_
+            if (Test-Path $parent) {
+                return $True
+            }
+            else {
+                Throw "Failed to find $parent for your transcript."
+                return $false
+            }
+        })]
         [alias('transcript')]
         [String]$Path
     )
@@ -176,7 +176,6 @@ What command would you use?
 
     [String]$s = Read-Host "`nDo you want another question? Press any key to continue or Q to quit"
     if ($s -match '^q') {
-
         $score = Get-GPA -Correct $global:CorrectCount -Possible $global:QuestionCount
         $result = "`nYou scored {0} correct out of {1} for a GPA of {2}. Your grade is {3}." -f $global:CorrectCount, $global:QuestionCount, $score.gpa, $score.Grade
         #colorize output based on gpa
@@ -203,7 +202,6 @@ What command would you use?
             $PSBoundParameters.add('NextQuestion', $True)
         }
         Write-Verbose 'Invoking quiz'
-        #Write-Verbose ($MyInvocation.MyCommand | Out-String)
         &$($MyInvocation.MyCommand) @PSBoundParameters
     }
 }

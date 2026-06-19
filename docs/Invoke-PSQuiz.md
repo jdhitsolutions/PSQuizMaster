@@ -1,7 +1,7 @@
 ---
 external help file: PSQuizmaster-help.xml
 Module Name: PSQuizMaster
-online version: https://bit.ly/3OqhUKx
+online version: https://jdhitsolutions.com/yourls/ba4f0d
 schema: 2.0.0
 ---
 
@@ -35,6 +35,7 @@ Use this command to start a quiz. You can specify the path to the quiz file or u
 
 ```powershell
 PS C:\> Invoke-PSQuiz -Path C:\work\quizzes\Aliases.quiz.json
+
 PowerShell Aliases [v0.2.0]
 Question 1/2
 
@@ -55,10 +56,10 @@ The command will auto-complete quiz files found in $PSQuizPath.
 ### Example 2
 
 ```powershell
-PS C:\> Get-PSQuiz *remoting*  | Start-PSQuiz
+PS C:\> Get-PSQuiz *remoting*  | Start-PSQuiz | Tee -variable r
 ```
 
-Get a quiz using a wildcard pattern and pipe it to Invoke-PSQuiz, using its alias Start-PQuiz, to begin the quiz.
+Get a quiz using a wildcard pattern and pipe it to Invoke-PSQuiz, using its alias Start-PQuiz, to begin the quiz. The quiz results will also be saved to $r.
 
 ## PARAMETERS
 
@@ -110,7 +111,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 This command has an alias of Start-PSQuiz.
 
 Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+https://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

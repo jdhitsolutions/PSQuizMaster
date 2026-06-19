@@ -1,6 +1,19 @@
 # Changelog for PSQuizmaster
 
 ## [Unreleased]
+### Added
+- Added a Domain Specific Language (DSL) for creating quiz files.
+- Added `New-PSQuizFixture` to create a DSL template.
+
+### Changed
+- Updated output from `Invoke-PSQuiz` to include a grade. Also included the default format file.
+- Updated code to mask and unmask notes in the quiz file.
+- Updated online help links.
+- Update `README`.
+
+### Fixed
+- Fixed prompt when running a quiz to show the correct number of possible choices.
+- Updated help for `New-PSQuizFile` to show missing parameters.
 
 ## [1.3.0] - 2024-10-17
 

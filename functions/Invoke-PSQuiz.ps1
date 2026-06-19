@@ -1,9 +1,9 @@
 #load a quiz from a json file
-Function Invoke-PSQuiz {
+function Invoke-PSQuiz {
     [CmdletBinding(DefaultParameterSetName = 'path')]
     [OutputType('pzQuizResult')]
     [alias('Start-PSQuiz')]
-    Param(
+    param(
         [Parameter(
             Position = 0,
             Mandatory,
@@ -20,28 +20,28 @@ Function Invoke-PSQuiz {
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
-            if (Get-PSQuiz -Name $_) {
-                $True
-            }
-            else {
-                Write-Warning "Can't find a quiz with the name in $PSQuizPath."
-                $False
-            }
-        })]
+                if (Get-PSQuiz -Name $_) {
+                    $True
+                }
+                else {
+                    Write-Warning "Can't find a quiz with the name in $PSQuizPath."
+                    $False
+                }
+            })]
         [String]$Name
     )
-    Begin {
+    begin {
         Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
         Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Running under PowerShell version $($PSVersionTable.PSVersion)"
     } #begin
 
-    Process {
+    process {
         if ($PSCmdlet.ParameterSetName -eq 'Name') {
             Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Getting path to $Name quiz"
             $Path = (Get-PSQuiz -Name $Name).path
         }
         Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Loading test from $Path"
-        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS]  Test Details:"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Test Details:"
         $test = Get-Content -Path $path | ConvertFrom-Json
         Write-Verbose "`n$(($test.metadata | Out-String).Trim())"
 
@@ -78,19 +78,20 @@ Function Invoke-PSQuiz {
         #capture the stop time
         $StopTime = Get-Date
         #This is the output from this function
+        #19 June 2026 Update to include GPA
         [PSCustomObject]@{
             PSTypeName     = 'psQuizResult'
             Test           = $in.metadata.Name
             TestVersion    = $in.metadata.version -as [Version]
             TotalQuestions = $QuestionCount
             TotalCorrect   = $CorrectCount
+            GPA            = (Get-GPA -Correct $CorrectCount -Possible $QuestionCount).Grade
             Date           = (Get-Date)
             TestTime       = New-TimeSpan -Start $StartTime -End $StopTime
             Path           = Convert-Path $Path
         }
     } #process
-    End {
+    end {
         Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
-
 }
