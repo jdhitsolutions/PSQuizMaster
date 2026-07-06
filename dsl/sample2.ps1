@@ -1,7 +1,7 @@
-#requires -version 5.1
+#requires -version 7
 #requires -module PSQuizMaster
 
-#This is a fixture for a new quiz file
+#This is a fixture for a new quiz file that was created using New-PSQuizFixture
 
 #usage: c:\scripts\PSQuizMaster\dsl\sample2.ps1
 
@@ -36,7 +36,7 @@ Quiz 'PowerShell 7 Sample Quiz' @(
         Note        = 'help about_operators'
     }
     Question @{
-        Question    = 'Which of the following modules is not supported or is included with PowerShell 7?'
+        Question    = 'Which of the following modules is not supported or included with PowerShell 7?'
         Answer      = 'PSScheduledJob'
         Distractors = 'CimCmdlets', 'Microsoft.PowerShell.Archive', 'Microsoft.PowerShell.ThreadJob', 'PSDiagnostics'
     }

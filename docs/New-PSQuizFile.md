@@ -14,12 +14,14 @@ Create an empty quiz file
 ## SYNTAX
 
 ```yaml
-New-PSQuizFile [-Name] <String> [-ShortName] <String> -Author <String> -Description <String> [-Version <Version>] [-Path <String>] [-NoClobber] [-Encoding <String>] [-WhatIf] [-Confirm]  [<CommonParameters>]
+New-PSQuizFile [-Name] <String> [-ShortName] <String> -Author <String> -Description <String> [-Version <Version>] [-Path <String>] [-NoClobber] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 This command will create an empty quiz file. You can then use New-PSQuizQuestion to define a new set of questions and add them to the file using Set-PSQuizFile.
+
+If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.
 
 ## EXAMPLES
 
@@ -32,7 +34,7 @@ PS C:\>  New-PSQuizFile -Name "PowerShell Scripting" -ShortName scripting -Autho
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---          07/05/2024    13:03            580 scripting.quiz.json
+-a---          07/05/2026    13:03            580 scripting.quiz.json
 
 PS C:\> Get-Content D:\temp\scripting.quiz.json
 {
@@ -42,7 +44,8 @@ PS C:\> Get-Content D:\temp\scripting.quiz.json
     "description": "A quick quiz on PowerShell scripting",
     "version": "0.1.0",
     "id": "f3d3b784-b838-405e-84fb-594600c82189",
-    "updated": "2024-07-05 17:03:45Z"
+    "updated": "2024-07-05 17:03:45Z",
+    "protected": false
   },
   "questions": []
 }
@@ -68,22 +71,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Description
 
 Enter a quiz description
@@ -94,23 +81,6 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Encoding
-
-Specify encoding for the text file.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Accepted values: Unicode, BigEndianUnicode, UTF8, UTF7, UTF32, ASCII, Default, OEM
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -151,7 +121,7 @@ Accept wildcard characters: False
 
 ### -Path
 
-Enter the path or directory to store the quiz json file.
+Enter the path or directory to store the quiz json file. Do not include the file name.
 
 ```yaml
 Type: String
@@ -206,6 +176,22 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named

@@ -9,7 +9,6 @@ https://github.com/jdhitsolutions/PSScriptTools
 <Configuration>
   <ViewDefinitions>
     <View>
-      <!--Created 07/05/2023 13:13:33 by PROSPERO\Jeff-->
       <Name>default</Name>
       <ViewSelectedBy>
         <TypeName>psQuizItem</TypeName>

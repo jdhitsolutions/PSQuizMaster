@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Save the user's PSQuizPath setting to a file.
+Save the user's PSQuizPath and psQuizTheme settings to a file.
 
 ## SYNTAX
 
@@ -23,6 +23,10 @@ The default location of $PSQuizPath is the module sample quiz folder. This globa
 
 The $PSQuizPath variable will also be updated to use the new location.
 
+Beginning with version 2.0.0, the module also supports style customizations through the pwshSpectreConsole module. A new hashtable, $psQuizTheme, is created when you load the module. You can manually change theme settings. Running this command will also save the theme settings to the JSON file. The next time you import the module, the saved theme settings will also be imported.
+
+This command has an alias of Save-PSQuizSettings to reflect this change in functionality.
+
 ## EXAMPLES
 
 ### Example 1
@@ -35,17 +39,19 @@ C:\work\quizzes\
 
 ## PARAMETERS
 
-### -Confirm
+### -Path
 
-Prompts you for confirmation before running the cmdlet.
+Specify the new value for $PSQuizPath.
+This will be stored as a persistent value until you change it.
+The folder must already exist.
 
 ```yaml
-Type: SwitchParameter
+Type: DirectoryInfo
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
-Required: False
-Position: Named
+Required: True
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -67,24 +73,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Path
-
-Specify the new value for $PSQuizPath.
-This will be stored as a persistent value until you change it.
-The folder must already exist.
-
-```yaml
-Type: DirectoryInfo
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -WhatIf
 
 Shows what would happen if the cmdlet runs.
@@ -94,6 +82,22 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named

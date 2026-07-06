@@ -14,7 +14,9 @@ function Invoke-QuizQuestion {
         [string[]]$Distractors,
         [Parameter(ValueFromPipelineByPropertyName)]
         [String]$Note,
-        [String]$Title = 'PowerShell Quiz'
+        [String]$Title = 'PowerShell Quiz',
+        [string]$Version,
+        [switch]$Protected
     )
 
     begin {
@@ -25,21 +27,22 @@ function Invoke-QuizQuestion {
         Write-Verbose $Question
 
         #Modified 8/15/2023 to allow for a masked answer. Issue #3
-        if ($answer -match '^[\s\d+]+$') {
-            Write-Verbose 'Unmasking Answer'
-            $answer = _showAnswer -ProtectedAnswer $answer
+        # 29 June 2026 get protection settings from metadata
+        if ($Protected -And ($answer -match '^[\s\d+]+$')) {
+                Write-Verbose 'Unmasking Answer'
+                $answer = _showAnswer -ProtectedAnswer $answer
         }
-
-        #19 June 2026 Unmask Notes
-        if ($note -match '^[\s\d+]+$') {
-            Write-Verbose 'Unmasking Answer'
-            $note = _showAnswer -ProtectedAnswer $note
-        }
+        If ($Protected -AND (($note -match '^[\s\d+]+$') )) {
+            #19 June 2026 Unmask Notes
+                Write-Verbose 'Unmasking note'
+                $note = _showAnswer -ProtectedAnswer $note
+            #}
+        } #unmask
 
         Write-Verbose "Detected $($distractors.count) distractors"
         #17 Oct 2024 unmask distractors if protected
         $Distractors = foreach ($distractor in $Distractors) {
-            if ($distractor -match '^[\s\d+]+$') {
+            If ($protected -AND ($distractor -match '^[\s\d+]+$')) {
                 Write-Verbose "Unmasking distractor: $distractor"
                 _showAnswer -ProtectedAnswer $distractor
             }
@@ -52,25 +55,29 @@ function Invoke-QuizQuestion {
         $cue = @"
 
 $Question
-$('-'*75)
 
+$(Write-SpectreRule -Width 75 -LineColor $psQuizTheme.BorderColor)
 "@
+#$('-'*75)
 
         for ($i = 1; $i -lt $possible.count + 1; $i++) {
-            $cue += "[$i]  $($possible[$i-1])`n"
+            $cue += "[[$i]]  $($possible[$i-1])`n"
         }
 
-        $cue += "[$i]  Quit`n"
-        $cue += $('-' * 75)
-        Write-Host $Title -ForegroundColor Cyan
-        Write-Host ('Question {0}/{1}' -f $QuestionCount, $AllCount) -ForegroundColor green
-        Write-Host $cue
+        $cue += "[[$i]]  Quit`n"
+     #   $cue += $(Write-SpectreRule -Width 75 -LineColor PaleGreen1)
+        #$('-' * 75)
+      #  Write-SpectreHost ("[{0}]$Title[/]" -f $psQuizTheme.Title)
+        Write-SpectreHost ('[{0}]Question {1}/{2}[/]' -f $psQuizTheme.Question,$QuestionCount, $AllCount)
+        Write-SpectreHost $cue
+        Write-SpectreRule -Width 75 -LineColor $psQuizTheme.BorderColor
 
         $count = $Distractors.count + 1
         Write-Verbose "$count answers"
         do {
             try {
-                [ValidateScript( { $_ -ge 1 -and $_ -le $count + 1 })][int32]$r = Read-Host -Prompt "Select an answer [1-$($count+1)]" -ErrorAction stop
+                #[ValidateScript( { $_ -ge 1 -and $_ -le $count + 1 })][int32]$r = Read-Host -Prompt "Select an answer [1-$($count+1)]" -ErrorAction stop
+                [ValidateScript( { $_ -ge 1 -and $_ -le $count + 1 })][int32]$r = Read-SpectreText -Message "[italic]Select an answer[/] [[1-$($count+1)]]" -ErrorAction stop
                 Write-Verbose "You entered $r"
             }
             catch {
@@ -82,7 +89,7 @@ $('-'*75)
         } until ($r -gt 0)
 
         if ($possible[$r - 1] -eq $answer) {
-            Write-Host 'Correct!' -ForegroundColor green
+            Write-SpectreHost ("[{0}]Correct![/]`n" -f $psQuizTheme.correct)
             $True
         }
         elseif ($r -eq $count + 1) {
@@ -90,15 +97,16 @@ $('-'*75)
             return -1
         }
         else {
-            Write-Host "The correct answer is: $answer" -ForegroundColor magenta
+            Write-SpectreHost ("[{0}]`nThe correct answer is:[/] $answer`n" -f $psQuizTheme.Incorrect)
             $false
         }
 
         if ($Note) {
-            Write-Host "`nAdditional Notes" -ForegroundColor yellow
-            Write-Host '----------------' -ForegroundColor yellow
-            Write-Host $Note -ForegroundColor Yellow
-            Write-Host "`n"
+            Write-SpectreHost ("`n[{0}]Additional Notes[/]" -f $psQuizTheme.Note)
+            #Write-Host '----------------' -ForegroundColor yellow
+            #Write-Host $Note -ForegroundColor Yellow
+            Write-SpectreHost $Note
+            Write-SpectreHost "`n"
         }
     } #process
     end {
@@ -126,16 +134,20 @@ function Get-GPA {
         'F'  = 0
     }
 
-    $pct = ($Correct / $Possible) * 100
-    $gpa = [math]::round(($pct / 20), 1)
-    $grade = $grades.GetEnumerator() | Where-Object { $_.value -le $gpa } | Select-Object -First 1
+    #2 July 2026 Allow for the user to quit before answering any questions
+    if ($Possible -gt 0) {
+        $pct = ($Correct / $Possible) * 100
+        $gpa = [math]::round(($pct / 20), 1)
+        $grade = $grades.GetEnumerator() | Where-Object { $_.value -le $gpa } | Select-Object -First 1
 
-    [PSCustomObject]@{
-        Grade   = $grade.name
-        Minimum = $grade.Value
-        GPA     = $GPA
+        [PSCustomObject]@{
+            Grade   = $grade.name
+            Minimum = $grade.Value
+            GPA     = $GPA
+        }
     }
 } #end Get-GPA
+
 
 #functions to obfuscate the answer
 

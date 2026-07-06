@@ -29,9 +29,7 @@ Invoke-PSQuickQuiz [-ModuleName <String>] [-NextQuestion] [-Path <String>] [<Com
 
 Use this script to test your knowledge of PowerShell commands, which given the Verb-Noun naming pattern should be pretty easy.
 
-The default behavior is to use all cmdlets and functions from installed modules with an option to exclude an array of module names.
-Wildcards are allowed.
-You also have the option to specify a single module for testing.
+The default behavior is to use all cmdlets and functions from installed modules with an option to exclude an array of module names. Wildcards are allowed. You also have the option to specify a single module for testing.
 
 ## EXAMPLES
 

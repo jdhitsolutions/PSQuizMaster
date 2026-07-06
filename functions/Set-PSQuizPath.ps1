@@ -1,27 +1,29 @@
-Function Set-PSQuizPath {
+function Set-PSQuizPath {
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('None','System.IO.DirectoryInfo')]
-    Param(
+    [Alias('Save-PSQuizSettings')]
+    [OutputType('None', 'System.IO.DirectoryInfo')]
+    param(
         [Parameter(
             Position = 0,
-            Mandatory,
-            HelpMessage= "Specify the new value for `$PSQuizPath. This will be stored as a persistent value until you change it. The folder must already exist."
+            HelpMessage = "Specify the new value for `$PSQuizPath. This will be stored as a persistent value until you change it. The folder must already exist."
         )]
-        [ValidateScript({Test-Path $_})]
-        [System.IO.DirectoryInfo]$Path,
+        [ValidateScript({ Test-Path $_ })]
+        [System.IO.DirectoryInfo]$Path = $global:PSQuizPath,
         [switch]$Passthru
     )
 
-    Begin {
+    begin {
         Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
         Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Running under PowerShell version $($PSVersionTable.PSVersion)"
     } #begin
 
-    Process {
-        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Updating `$PSQuizPath to $Path"
+    process {
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Saving `$PSQuizPath and `$psQuizTheme settings to $Path"
         $settings = [PSCustomObject]@{
-            PSQuizPath = $Path.FullName
-            Updated = (Get-Date).ToString()
+            PSQuizPath   = $Path.FullName
+            psQuizTheme  = $psQuizTheme
+            Updated      = (Get-Date).ToString()
+            Username     = [System.Environment]::UserName
             Computername = [System.Environment]::MachineName
         }
         #PSQuizSettingsFile is a private variable defined in PSQuizMaster.psm1
@@ -29,15 +31,15 @@ Function Set-PSQuizPath {
 
         if ($PSCmdlet.ShouldProcess($Path.FullName)) {
             #update the variable in case it is using an old value
-            Set-Variable -name PSQuizPath -value $Path.FullName -Scope Global
+            Set-Variable -Name PSQuizPath -Value $Path.FullName -Scope Global
         }
 
-        if ($Passthru -AND (-Not $WhatIfPreference)) {
-            Get-Item -path $Path
+        if ($Passthru -and (-not $WhatIfPreference)) {
+            Get-Item -Path $Path
         }
     } #process
 
-    End {
+    end {
         Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
 

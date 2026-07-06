@@ -18,8 +18,6 @@ https://github.com/jdhitsolutions/PSScriptTools
         <Label>Path</Label>
       </GroupBy>
       <TableControl>
-        <!--Delete the AutoSize node if you want to use the defined widths.
-        <AutoSize />-->
         <TableHeaders>
           <TableColumnHeader>
             <Label>Name</Label>
@@ -52,7 +50,9 @@ https://github.com/jdhitsolutions/PSScriptTools
                 <PropertyName>Version</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Description</PropertyName>
+                <ScriptBlock>
+                  "{0}{1}{2}" -f "`e[38;5;228;3m",$_.Description,"`e[0m"
+                </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Questions</PropertyName>

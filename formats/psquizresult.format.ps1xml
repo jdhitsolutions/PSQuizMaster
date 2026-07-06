@@ -9,7 +9,6 @@ https://github.com/jdhitsolutions/PSScriptTools
 <Configuration>
   <ViewDefinitions>
     <View>
-      <!--Created 08/25/2023 11:29:50 by PROSPERO\Jeff-->
       <Name>default</Name>
       <ViewSelectedBy>
         <TypeName>psQuizResult</TypeName>
@@ -19,8 +18,6 @@ https://github.com/jdhitsolutions/PSScriptTools
         <Label>Path</Label>
       </GroupBy>
       <TableControl>
-        <!--Delete the AutoSize node if you want to use the defined widths.
-        <AutoSize />-->
         <TableHeaders>
           <TableColumnHeader>
             <Label>Test</Label>
@@ -34,12 +31,12 @@ https://github.com/jdhitsolutions/PSScriptTools
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Questions</Label>
-            <Width>11</Width>
+            <Width>10</Width>
             <Alignment>right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Correct</Label>
-            <Width>11</Width>
+            <Width>10</Width>
             <Alignment>right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
@@ -57,7 +54,27 @@ https://github.com/jdhitsolutions/PSScriptTools
                 </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>GPA</PropertyName>
+                <ScriptBlock>
+                <!-- display a color coded grade-->
+                if ($host.Name -match "code|console") {
+                  [double]$grade = ($_.TotalCorrect/$_.TotalQuestions)*100
+                  if ($grade -ge 75) {
+                    <!--green-->
+                    "`e[92m$($_.GPA)`e[0m"
+                  }
+                  elseif ($grade -ge 45) {
+                    <!--yellow-->
+                    "`e[93m$($_.GPA)`e[0m"
+                  }
+                  else {
+                    <!--red-->
+                    "`e[91m$($_.GPA)`e[0m"
+                  }
+                }
+                else {
+                    $_.GPA
+                }
+                </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>TotalQuestions</PropertyName>
@@ -69,24 +86,26 @@ https://github.com/jdhitsolutions/PSScriptTools
                   [double]$grade = ($_.TotalCorrect/$_.TotalQuestions)*100
                   if ($grade -ge 75) {
                     <!--green-->
-                    "$([char]27)[92m$($_.TotalCorrect)$([char]27)[0m"
+                    "`e[92m$($_.TotalCorrect)`e[0m"
                   }
                   elseif ($grade -ge 45) {
                     <!--yellow-->
-                    "$([char]27)[93m$($_.TotalCorrect)$([char]27)[0m"
+                    "`e[93m$($_.TotalCorrect)`e[0m"
                   }
                   else {
                     <!--red-->
-                    "$([char]27)[91m$($_.TotalCorrect)$([char]27)[0m"
+                    "`e[91m$($_.TotalCorrect)`e[0m"
                   }
                 }
                 else {
-                  $_.Correct
+                    $_.Correct
                 }
                 </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>TestTime</PropertyName>
+                <ScriptBlock>
+                  $_.TestTime.ToString("hh\:mm\:ss")
+                </ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

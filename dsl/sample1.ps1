@@ -2,11 +2,13 @@
 
 #the quiz will be created in %TEMP%
 
+#remove -protect to create a quiz with plaintext answers, distractors, and notes
+
 Quiz 'New York' -protect @(
     @{
-        Path        = $(Join-Path -Path ([system.io.path]::GetTempPath()) -ChildPath 'test.quiz.json')
+        Path        = $(Join-Path -Path ([system.io.path]::GetTempPath()) -ChildPath 'ny.quiz.json')
         Author      = 'Al Dente'
-        Description = 'My test DSL created quiz about New York state'
+        Description = 'My sample DSL created quiz about New York state'
     }
     Question @{
         Question    = 'What is the capital of New York state?'
@@ -16,7 +18,7 @@ Quiz 'New York' -protect @(
     Question @{
         Question    = 'What is the highest point in New York state?'
         Answer      = 'Mt Marcy'
-        Distractors = 'Empire State Building', 'Niagara Falls', 'Tug Hill Plateau', 'Mt Rushmore'
+        Distractors = 'Empire State Building', 'Niagara Falls', 'Tug Hill plateau', 'Mt Rushmore'
         Note        = 'Mt Marcy is in the Adirondacks and stands at 5344 ft'
     }
     Question @{

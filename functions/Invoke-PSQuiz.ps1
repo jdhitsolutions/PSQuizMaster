@@ -11,7 +11,7 @@ function Invoke-PSQuiz {
             HelpMessage = 'Enter the full path to the quiz file',
             ParameterSetName = 'path'
         )]
-        [ValidateScript({ Test-Path $_ })]
+        [ValidateScript({Test-Path -path $_},ErrorMessage = "Failed to find or validate {0}.")]
         [String]$Path,
 
         [Parameter(
@@ -19,15 +19,7 @@ function Invoke-PSQuiz {
             HelpMessage = 'Specify the quiz name.'
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript({
-                if (Get-PSQuiz -Name $_) {
-                    $True
-                }
-                else {
-                    Write-Warning "Can't find a quiz with the name in $PSQuizPath."
-                    $False
-                }
-            })]
+        [ValidateScript({Get-PSQuiz -Name $_},ErrorMessage = "Can't find a quiz called {0} in `$PSQuizPath.")]
         [String]$Name
     )
     begin {
@@ -36,19 +28,31 @@ function Invoke-PSQuiz {
     } #begin
 
     process {
+        #6 July 2026 Do not run quiz in the VSCode Integrated console since it doesn't display images properly.
+        if ($Host.Name -eq 'Visual Studio Code Host') {
+            Write-Warning "Running a PSQuiz is not supported in the integrated VS Code terminal."
+            return
+        }
         if ($PSCmdlet.ParameterSetName -eq 'Name') {
             Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Getting path to $Name quiz"
             $Path = (Get-PSQuiz -Name $Name).path
         }
         Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Loading test from $Path"
         Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Test Details:"
-        $test = Get-Content -Path $path | ConvertFrom-Json
-        Write-Verbose "`n$(($test.metadata | Out-String).Trim())"
 
         $in = Get-Content -Path $path | ConvertFrom-Json
+        Write-Verbose "`n$(($in.metadata | Out-String).Trim())"
+        #29 June 2026 Get protection setting from the metadata
 
-        $title = '{0} [v{1}]' -f $in.metadata.name, $in.metadata.version
+       # $title = '{0} [[v{1}]]' -f $in.metadata.name, $in.metadata.version
+       # $title = $in.metadata.name
 
+       #align the title to the center of the image
+       $logo = ($in.Logo -AND (Test-Path $in.Logo)) ? $in.Logo : $global:PSQuizTheme.defaultLogo
+
+       $titlePad = ((Get-SpectreImage -ImagePath $logo -MaxWidth 10) | Get-SpectreRenderableSize).height/2 -1
+        $title = "[{0}]{1}[/]" -f $psQuizTheme.Title,$in.metadata.name | Format-SpectrePadded -top $titlePad -Bottom 0 -Left 1 -Right 0
+        $version = $in.metadata.version
         $QuestionCount = 0
         $CorrectCount = 0
         #randomize the questions
@@ -58,10 +62,17 @@ function Invoke-PSQuiz {
 
         #capture the quiz start time
         $StartTime = Get-Date
-
         foreach ($question in $AllQuestions) {
+            $data = @((Get-SpectreImage -ImagePath $logo -MaxWidth 10),$title) |
+            Format-SpectreColumns |
+            Format-SpectrePadded -Top 1 -Left 1 -Right 0 -Bottom 1
+            $width = ($data | Get-SpectreRenderableSize).Width + 5
+            write-information $data
+            $data | Format-SpectrePanel -Color $psQuizTheme.BorderColor -Header "v$Version" -Width $width |
+            Out-SpectreHost
+
             $QuestionCount++
-            $answer = $question | Invoke-QuizQuestion -title $title
+            $answer = $question | Invoke-QuizQuestion -title $title -version $version -Protected:$in.metadata.protected
             Write-Verbose "Answer = $answer"
             if ($answer -is [Int]) {
                 Write-Verbose 'Ending the quiz.'
@@ -72,7 +83,8 @@ function Invoke-PSQuiz {
             elseif ($answer) {
                 $CorrectCount++
             }
-            Pause
+            #Pause
+            Read-SpectrePause
         }
 
         #capture the stop time

@@ -51,7 +51,7 @@ What command will display currently defined PowerShell aliases?
 Select a menu choice [1-5]:
 ```
 
-The command will auto-complete quiz files found in $PSQuizPath.
+The command will auto-complete quiz files found in $PSQuizPath. Beginning with module version 2.0, the quiz will display a panel with a logo image and the quiz title.
 
 ### Example 2
 

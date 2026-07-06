@@ -11,27 +11,19 @@ Function Invoke-PSQuickQuiz {
         [Parameter(HelpMessage = 'This is used to indicate a continuing test. You should never need to use this parameter.')]
         [Switch]$NextQuestion,
         [Parameter(HelpMessage = 'Enter a path and filename for a quiz transcript.')]
-        [ValidateScript( {
-            $parent = Split-Path $_
-            if (Test-Path $parent) {
-                return $True
-            }
-            else {
-                Throw "Failed to find $parent for your transcript."
-                return $false
-            }
-        })]
+        [ValidateScript({Test-Path -path $_},ErrorMessage = "Failed to find or validate {0} for your transcript.")]
         [alias('transcript')]
         [String]$Path
     )
 
     If ($Path -AND (-not $NextQuestion)) {
         #first time through so initialize a new transcript file.
+        #20 June 2026 Update the header to work cross-platform
         $header = @"
 PowerShell Quiz - $(Get-Date)
 -------------------------------------
 PowerShell version: $($PSVersionTable.PSVersion)
-User              : $($env:USERDOMAIN)\$($env:username)
+User              : $([System.Environment]::UserDomainName)\$([System.Environment]::UserName)
 Quiz parameters   :
 
 $(($PSBoundParameters | Out-String).trim())

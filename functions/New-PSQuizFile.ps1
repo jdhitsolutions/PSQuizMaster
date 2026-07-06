@@ -39,27 +39,15 @@ Function New-PSQuizFile {
 
         [Parameter(HelpMessage = 'Enter the path or directory to store the quiz json file.')]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript( {
-                if (Test-Path -Path $_) {
-                    return $True
-                }
-                else {
-                    Throw "Can't verify $_ as a valid path."
-                    Return $false
-                }
-            })]
+        [ValidateScript({Test-Path -path $_},ErrorMessage = "Failed to find or validate {0}.")]
         [String]$Path = $PSQuizPath,
 
         [Parameter(HelpMessage = "Don't overwrite an existing file with the same name.")]
-        [Switch]$NoClobber,
-
-        [Parameter(HelpMessage = 'Specify encoding for the text file.')]
-        [ValidateSet('Unicode', 'BigEndianUnicode', 'UTF8', 'UTF7', 'UTF32', 'ASCII', 'Default', 'OEM')]
-        [String]$Encoding = 'Unicode'
+        [Switch]$NoClobber
     )
     DynamicParam {
         # Open the new file in the current editor
-        If ($host.name -match 'code|ise') {
+        If ($host.name -eq 'Visual Studio Code Host') {
 
             $paramDictionary = New-Object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
 
@@ -97,6 +85,7 @@ Function New-PSQuizFile {
         $QuizFile = [PSCustomObject]@{
             '$schema' = $PSQuizSchema
             metadata  = $MetaHash
+            logo      = ""
             questions = @()
         }
 
@@ -104,8 +93,7 @@ Function New-PSQuizFile {
             Try {
                 $QuizFile |
                 ConvertTo-Json -ErrorAction Stop |
-                Out-File -FilePath $QuizPath -Encoding $encoding -NoClobber:$NoClobber -ErrorAction Stop
-
+                Out-File -FilePath $QuizPath -Encoding utf8 -NoClobber:$NoClobber -ErrorAction Stop
             }
             Catch {
                 Throw $_
@@ -123,6 +111,5 @@ Function New-PSQuizFile {
     } #Process
     End {
         Write-Verbose "Ending $($MyInvocation.MyCommand)"
-
     } #End
 }

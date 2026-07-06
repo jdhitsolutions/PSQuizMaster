@@ -21,6 +21,12 @@ New-PSQuizQuestion [-Question] <String> [-Answer] <String> [-Distractors] <Strin
 
 Use this command to create a quiz question. You should save it to a variable and then add it to a quiz file with Set-PSQuizFile.
 
+Do not include SpectreConsole formatting in your parameter values. Manually insert formatting into the JSON file. You should insert formatting before masking anything.
+
+Note that if your parameter values contain square brackets, they will be escaped in order to be used with the pwshSpectreConsole module. When you edit the JSON file you will see that a value like [-1] will be stored as [[-1]].
+
+Masking the the answer will not mask distractors or notes. You can manually mask items by editing the JSON file in VSCode. Or don't bother masking with this command and run Protect-PSQuizFile which will mask answers, distractors, and notes.
+
 ## EXAMPLES
 
 ### Example 1
@@ -151,3 +157,5 @@ https://jdhitsolutions.com/yourls/newsletter
 [New-PSQuizFile](New-PSQuizFile.md)
 
 [New-PSQuiz](New-PSQuiz.md)
+
+[Protect-PSQuizFile](Protect-PSQuizFile.md)

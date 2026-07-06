@@ -32,28 +32,12 @@ PS C:\> Copy-PSSampleQuiz -Path C:\work\quizzes\
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---            7/6/2024 11:03 AM           2494 Aliases.quiz.json
--a---            7/7/2024  2:21 PM           6202 demo.quiz.json
--a---            7/7/2024  2:21 PM           4156 remoting.quiz.json
+-a---            7/1/2026 11:03 AM           2494 Aliases.quiz.json
+-a---            7/2/2026  2:21 PM           6202 demo.quiz.json
+-a---            7/2/2026  2:21 PM           4156 remoting.quiz.json
 ```
 
 ## PARAMETERS
-
-### -Confirm
-
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Path
 
@@ -82,6 +66,22 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named

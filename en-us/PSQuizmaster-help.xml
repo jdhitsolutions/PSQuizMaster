@@ -27,17 +27,6 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
@@ -49,21 +38,20 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
-        <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="Destination">
         <maml:name>Path</maml:name>
         <maml:description>
@@ -80,6 +68,18 @@
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -123,9 +123,9 @@
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---            7/6/2024 11:03 AM           2494 Aliases.quiz.json
--a---            7/7/2024  2:21 PM           6202 demo.quiz.json
--a---            7/7/2024  2:21 PM           4156 remoting.quiz.json</dev:code>
+-a---            7/1/2026 11:03 AM           2494 Aliases.quiz.json
+-a---            7/2/2026  2:21 PM           6202 demo.quiz.json
+-a---            7/2/2026  2:21 PM           4156 remoting.quiz.json</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -134,7 +134,7 @@ Mode                 LastWriteTime         Length Name
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3OocjEC</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/6ea04b</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-PSQuizPath</maml:linkText>
@@ -157,7 +157,7 @@ Mode                 LastWriteTime         Length Name
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-PSQuiz</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
             <maml:para>Specify a quiz name.</maml:para>
@@ -169,6 +169,9 @@ Mode                 LastWriteTime         Length Name
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-PSQuiz</maml:name>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
@@ -181,10 +184,21 @@ Mode                 LastWriteTime         Length Name
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Menu</maml:name>
+          <maml:description>
+            <maml:para>Display a menu of quizzes in the specified path</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none">
         <maml:name>Name</maml:name>
         <maml:description>
           <maml:para>Specify a quiz name.</maml:para>
@@ -207,6 +221,18 @@ Mode                 LastWriteTime         Length Name
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Menu</maml:name>
+        <maml:description>
+          <maml:para>Display a menu of quizzes in the specified path</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -239,25 +265,25 @@ Mode                 LastWriteTime         Length Name
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt;  Get-PSQuiz
 
-   Path: C:\work\quizzes\Aliases.quiz.json [7/7/2023 6:28:58 PM]
+   Path: C:\work\quizzes\Aliases.quiz.json [7/7/2026 6:28:58 PM]
 
 Name                Version    Description                            Questions
 ----                -------    -----------                            ---------
 PowerShell Aliases  0.6.0      A short quiz on using aliases ....             3
 
-   Path: C:\work\quizzes\demo.quiz.json [6/29/2023 9:15:26 AM]
+   Path: C:\work\quizzes\demo.quiz.json [6/29/2026 9:15:26 AM]
 
 Name                Version    Description                            Questions
 ----                -------    -----------                            ---------
 My Demo Quiz        0.3.0      This is a demo quiz file                       7
 
-   Path: C:\work\quizzes\pshelp.quiz.json [7/7/2023 6:29:22 PM]
+   Path: C:\work\quizzes\pshelp.quiz.json [7/7/2026 6:29:22 PM]
 
 Name                Version    Description                            Questions
 ----                -------    -----------                           ---------
 PowerShell Help     0.2.1      How to use help                                2
 
-   Path: C:\work\quizzes\remoting.quiz.json [7/5/2023 11:36:18 AM]
+   Path: C:\work\quizzes\remoting.quiz.json [7/5/2026 11:36:18 AM]
 
 Name                Version    Description                            Questions
 ----                -------    -----------                            ---------
@@ -275,17 +301,25 @@ Author      : Jeff Hicks
 Version     : 0.2.0
 Description : A short quiz on PowerShell remoting concepts.
 Questions   : 5
-Updated     : 7/5/2023 11:36:18 AM
+Updated     : 7/5/2026 11:36:18 AM
 Path        : C:\work\quizzes\remoting.quiz.json</dev:code>
         <dev:remarks>
           <maml:para>You can use wildcards with the quiz name.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSQuiz -Menu | Start-PSQuiz</dev:code>
+        <dev:remarks>
+          <maml:para>Display a list of quizzes in the $PSQuizPath and then start the selected quiz. Search is enabled in the list. Start typing the quiz name to narrow the selection choices.</maml:para>
+          <maml:para>The menu will include a Cancel option which will not write an object to the pipeline.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3OnLjFd</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/f610e8</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-PSQuiz</maml:linkText>
@@ -506,7 +540,7 @@ Your grade is A.</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3Ome6tP</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/60b3d8</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-PSQuiz</maml:linkText>
@@ -614,6 +648,7 @@ Your grade is A.</dev:code>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Invoke-PSQuiz -Path C:\work\quizzes\Aliases.quiz.json
+
 PowerShell Aliases [v0.2.0]
 Question 1/2
 
@@ -628,21 +663,21 @@ What command will display currently defined PowerShell aliases?
 ---------------------------------------------------------------------------
 Select a menu choice [1-5]:</dev:code>
         <dev:remarks>
-          <maml:para>The command will auto-complete quiz files found in $PSQuizPath.</maml:para>
+          <maml:para>The command will auto-complete quiz files found in $PSQuizPath. Beginning with module version 2.0, the quiz will display a panel with a logo image and the quiz title.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-PSQuiz *remoting*  | Start-PSQuiz</dev:code>
+        <dev:code>PS C:\&gt; Get-PSQuiz *remoting*  | Start-PSQuiz | Tee -variable r</dev:code>
         <dev:remarks>
-          <maml:para>Get a quiz using a wildcard pattern and pipe it to Invoke-PSQuiz, using its alias Start-PQuiz, to begin the quiz.</maml:para>
+          <maml:para>Get a quiz using a wildcard pattern and pipe it to Invoke-PSQuiz, using its alias Start-PQuiz, to begin the quiz. The quiz results will also be saved to $r.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3OqhUKx</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/ba4f0d</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Invoke-PSQuickQuiz</maml:linkText>
@@ -664,8 +699,9 @@ Select a menu choice [1-5]:</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command serves as a kind of "wizard" to guide a quiz creator through the process of creating a quiz file with questions. You can modify the quiz file later by modifying the JSON file or using Set-PSQuizFile.</maml:para>
-      <maml:para>Use the MaskAnswer parameter if you want to hide the answers in the JSON file.</maml:para>
+      <maml:para>This command serves as a kind of "wizard" to guide a quiz creator through the process of creating a quiz file with questions. Do not include any SpectreConsole formatting in your answers. You can modify the quiz file later by modifying the JSON file or using Set-PSQuizFile.</maml:para>
+      <maml:para>Use the MaskAnswer parameter if you want to hide the answers in the JSON file. This will only mask the answers. Distractors and notes will not be masked. If you mask answers with this command,  avoid distractors, or notes that are only numbers. If you intend to add SpectreConsole style, do not mask answers now. Create the quiz, edit the JSON to add style, then run Protect-PSQuiz file to mask everything.</maml:para>
+      <maml:para>If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -751,7 +787,7 @@ Select a menu choice [1-5]:</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode or in the PowerShell ISE, you can use the dynamic parameter, UseEditor, to open the new file in the current editor.</maml:para>
+        <maml:para>This command has an alias of Make-Quiz. If you run this command from within the integrated terminal in VSCode you can use the dynamic parameter, -UseEditor, to open the new file in the current editor.</maml:para>
         <maml:para>Learn more about PowerShell: https://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -765,7 +801,7 @@ Enter a quiz description. You can always edit this later: A brief quiz on using 
 Enter the author name: Jeff Hicks
 Enter the question: What command do you use to install the latest version of the help documentation?
 Enter the answer: Update-Help
-Enter a comma-separated list of distractors: Install-Help,Get-Help,Find-Help,Get-Help -online
+Enter a comma-separated list of distractors: Install-Help,Get-Help,Find-Help,"Get-Help -online"
 Enter any notes for this question: A few errors are to be expected when running Update-Help
 Add another question? (Y/N): n
 
@@ -774,7 +810,7 @@ Author      : Jeff Hicks
 Version     : 0.1.0
 Description : A brief quiz on using the PowerShell help system
 Questions   : 1
-Updated     : 07/05/2023 12:53:23
+Updated     : 07/05/2026 12:53:23
 Path        : D:\temp\pshelp.quiz.json</dev:code>
         <dev:remarks>
           <maml:para>The default path location is $PSQuizPath. You can specify a different location with the -Path parameter.</maml:para>
@@ -784,7 +820,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3OjtLdk</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/f0c52a</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-PSQuizFile</maml:linkText>
@@ -819,6 +855,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
     </command:details>
     <maml:description>
       <maml:para>This command will create an empty quiz file. You can then use New-PSQuizQuestion to define a new set of questions and add them to the file using Set-PSQuizFile.</maml:para>
+      <maml:para>If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -859,44 +896,11 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Description</maml:name>
           <maml:description>
             <maml:para>Enter a quiz description</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Encoding</maml:name>
-          <maml:description>
-            <maml:para>Specify encoding for the text file.</maml:para>
-          </maml:description>
-          <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">Unicode</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">BigEndianUnicode</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">UTF8</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">UTF7</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">UTF32</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ASCII</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">OEM</command:parameterValue>
-          </command:parameterValueGroup>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -918,7 +922,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
-            <maml:para>Enter the path or directory to store the quiz json file.</maml:para>
+            <maml:para>Enter the path or directory to store the quiz json file. Do not include the file name.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -950,6 +954,17 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -965,34 +980,10 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
-        <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Description</maml:name>
         <maml:description>
           <maml:para>Enter a quiz description</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Encoding</maml:name>
-        <maml:description>
-          <maml:para>Specify encoding for the text file.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1028,7 +1019,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Path</maml:name>
         <maml:description>
-          <maml:para>Enter the path or directory to store the quiz json file.</maml:para>
+          <maml:para>Enter the path or directory to store the quiz json file. Do not include the file name.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1073,6 +1064,18 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -1109,7 +1112,7 @@ Path        : D:\temp\pshelp.quiz.json</dev:code>
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a---          07/05/2024    13:03            580 scripting.quiz.json
+-a---          07/05/2026    13:03            580 scripting.quiz.json
 
 PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
 {
@@ -1119,7 +1122,8 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     "description": "A quick quiz on PowerShell scripting",
     "version": "0.1.0",
     "id": "f3d3b784-b838-405e-84fb-594600c82189",
-    "updated": "2024-07-05 17:03:45Z"
+    "updated": "2024-07-05 17:03:45Z",
+    "protected": false
   },
   "questions": []
 }</dev:code>
@@ -1131,7 +1135,7 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/45jiosW</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/c1e0b5</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-PSQuiz</maml:linkText>
@@ -1149,6 +1153,218 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-PSQuizFixture</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>PSQuizFixture</command:noun>
+      <maml:description>
+        <maml:para>Create a new PSQuiz fixture script</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Run this command to create a new PSQuiz fixture script. This is a PowerShell script file configured to use the PSQuiz Domain Specific Language (DSL) to help you quickly generate a quiz. Once you edit the script file created with this command, you can run it to generate the quiz.</maml:para>
+      <maml:para>If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-PSQuizFixture</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>What is the long name for your new quiz?</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specify the path and filename for the fixture file. It should be a .ps1 file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Protect</maml:name>
+          <maml:description>
+            <maml:para>Do you want to protect the file quiz file</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Count">
+          <maml:name>Questions</maml:name>
+          <maml:description>
+            <maml:para>How many initial questions do you intend to ask?</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>5</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>What is the long name for your new quiz?</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>Specify the path and filename for the fixture file. It should be a .ps1 file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Protect</maml:name>
+        <maml:description>
+          <maml:para>Do you want to protect the file quiz file</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Count">
+        <maml:name>Questions</maml:name>
+        <maml:description>
+          <maml:para>How many initial questions do you intend to ask?</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>5</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.IO.FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-PSQuizFixture "PowerShell Scripting Basics" -path c:\work\PSScripting-Basics.ps1 -protect
+
+    Directory: C:\work
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           6/22/2026  8:29 AM           1911 PSScripting-Basics.ps1</dev:code>
+        <dev:remarks>
+          <maml:para>Create a new fixture script in the designated file to create a PSQuiz called 'PowerShell Scripting Basics'. When the fixture script is executed, it will use the PSQuiz DSL to create a quiz JSON file with answers, distractors, and notes protected.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/f65753</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>about_PSQuizDSL</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>New-PSQuizQuestion</command:name>
       <command:verb>New</command:verb>
       <command:noun>PSQuizQuestion</command:noun>
@@ -1158,6 +1374,9 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
     </command:details>
     <maml:description>
       <maml:para>Use this command to create a quiz question. You should save it to a variable and then add it to a quiz file with Set-PSQuizFile.</maml:para>
+      <maml:para>Do not include SpectreConsole formatting in your parameter values. Manually insert formatting into the JSON file. You should insert formatting before masking anything.</maml:para>
+      <maml:para>Note that if your parameter values contain square brackets, they will be escaped in order to be used with the pwshSpectreConsole module. When you edit the JSON file you will see that a value like [-1] will be stored as [[-1]].</maml:para>
+      <maml:para>Masking the the answer will not mask distractors or notes. You can manually mask items by editing the JSON file in VSCode. Or don't bother masking with this command and run Protect-PSQuizFile which will mask answers, distractors, and notes.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1210,6 +1429,17 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MaskAnswer</maml:name>
+          <maml:description>
+            <maml:para>Mask the answer so it is not displayed in plain text in the JSON file.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -1260,6 +1490,18 @@ PS C:\&gt; Get-Content D:\temp\scripting.quiz.json
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MaskAnswer</maml:name>
+        <maml:description>
+          <maml:para>Mask the answer so it is not displayed in plain text in the JSON file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -1315,7 +1557,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3Onr4rm</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/b67096</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-PSQuizFile</maml:linkText>
@@ -1323,6 +1565,10 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-PSQuiz</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Protect-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -1337,8 +1583,8 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers and distractors. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating."</maml:para>
-      <maml:para>For best results, your answers should be in text and not a numeric answer. If you must use a numeric answer, it must not be three digits.</maml:para>
+      <maml:para>PSQuizzes are stored by default in plaintext JSON files. You can use this command to mask the answers and distractors. The obfuscation technique is not complicated and anyone with access to this module can easily reveal the answers. But this will deter casual "cheating". This command will mask all answers, distractors, and notes.</maml:para>
+      <maml:para>Running this command will also update the quiz schema to version 2.0, if necessary.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1355,17 +1601,6 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
@@ -1377,21 +1612,20 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
-        <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>Path</maml:name>
         <maml:description>
@@ -1408,6 +1642,18 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1454,7 +1700,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3S1Iv3M</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/e600f1</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Unprotect-PSQuizFile</maml:linkText>
@@ -1473,6 +1719,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     </command:details>
     <maml:description>
       <maml:para>When you run Set-PSQuizPath the command creates a JSON file under $HOME called .psquizsettings.json. Use this command if you want to delete the file. This will also set the value of $PSQuizPath back to the module default.</maml:para>
+      <maml:para>If you have customized PSQuizTheme settings, you will get the default settings the next time you import the module.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1564,7 +1811,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/47nsYks</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/cc1879</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-PSQuizPath</maml:linkText>
@@ -1610,17 +1857,6 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Description</maml:name>
@@ -1682,10 +1918,32 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Protected</maml:name>
+          <maml:description>
+            <maml:para>Items are masked or protected.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1707,18 +1965,6 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
-        <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Description</maml:name>
@@ -1792,10 +2038,34 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Protected</maml:name>
+        <maml:description>
+          <maml:para>Items are masked or protected.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1842,7 +2112,7 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/45kzFlt</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/fd4c6a</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSQuiz</maml:linkText>
@@ -1864,12 +2134,14 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
       <command:verb>Set</command:verb>
       <command:noun>PSQuizPath</command:noun>
       <maml:description>
-        <maml:para>Save the user's PSQuizPath setting to a file.</maml:para>
+        <maml:para>Save the user's PSQuizPath and psQuizTheme settings to a file.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
       <maml:para>The default location of $PSQuizPath is the module sample quiz folder. This global variable is the default for most commands in this module. Use this command to set a new location. This value will be stored in a settings file under $HOME called .psquizsettings.json. You shouldn't need to do anything with this file. If the file exists, the module will set $PSQuizPath to the saved value.</maml:para>
       <maml:para>The $PSQuizPath variable will also be updated to use the new location.</maml:para>
+      <maml:para>Beginning with version 2.0.0, the module also supports style customizations through the pwshSpectreConsole module. A new hashtable, $psQuizTheme, is created when you load the module. You can manually change theme settings. Running this command will also save the theme settings to the JSON file. The next time you import the module, the saved theme settings will also be imported.</maml:para>
+      <maml:para>This command has an alias of Save-PSQuizSettings to reflect this change in functionality.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1885,17 +2157,6 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
@@ -1919,20 +2180,31 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Path</maml:name>
         <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          <maml:para>Specify the new value for $PSQuizPath. This will be stored as a persistent value until you change it. The folder must already exist.</maml:para>
         </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">DirectoryInfo</command:parameterValue>
         <dev:type>
-          <maml:name>SwitchParameter</maml:name>
+          <maml:name>DirectoryInfo</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Passthru</maml:name>
@@ -1946,22 +2218,22 @@ PS C:\&gt; Set-PSQuizFile -Path D:\temp\pshelp.quiz.json -Question $q -Version 0
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-        <maml:name>Path</maml:name>
-        <maml:description>
-          <maml:para>Specify the new value for $PSQuizPath. This will be stored as a persistent value until you change it. The folder must already exist.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">DirectoryInfo</command:parameterValue>
-        <dev:type>
-          <maml:name>DirectoryInfo</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -2018,7 +2290,7 @@ C:\work\quizzes\</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/45cm27E</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/59002b</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Copy-PSQuizFile</maml:linkText>
@@ -2041,6 +2313,7 @@ C:\work\quizzes\</dev:code>
     </command:details>
     <maml:description>
       <maml:para>If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers and distractors. If the file has not been protected, nothing will be done.</maml:para>
+      <maml:para>Running this command will also update the quiz schema to version 2.0, if necessary.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2057,17 +2330,6 @@ C:\work\quizzes\</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-          <maml:name>Confirm</maml:name>
-          <maml:description>
-            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
           <maml:description>
@@ -2079,21 +2341,20 @@ C:\work\quizzes\</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
-        <maml:name>Confirm</maml:name>
-        <maml:description>
-          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>Path</maml:name>
         <maml:description>
@@ -2110,6 +2371,18 @@ C:\work\quizzes\</dev:code>
         <maml:name>WhatIf</maml:name>
         <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -2156,10 +2429,242 @@ C:\work\quizzes\</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3S1ELPq</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/186ac1</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Protect-PSQuizFile</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-PSQuizSchema</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>PSQuizSchema</command:noun>
+      <maml:description>
+        <maml:para>Update the schema for a PSQuiz file.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Version 2.0 of this module introduced new features and a new schema version. Quizzes created with this version of the module will use the new schema. If you have existing quizzes, you may want to update the schema. There are several options.</maml:para>
+      <maml:para>First, if you protect with `Protect-PSQuizFile` or unprotect with `Unprotect-PSQuizFile`, the schema setting automatically be updated to v2.</maml:para>
+      <maml:para>Your other option is to use the `Update-PSQuizSchema` (docs/Update-PSQuizSchema.md)command. In addition to updating the schema setting, you can opt to the `protected` metadata setting and the new `logo` setting. You should verify the `protected` setting is accurate. You will need to manually enter to complete path to the logo image file.</maml:para>
+      <maml:para>If you update the schema, you should update the internal version number of your quiz. Updating the schema will not change the Updated property. That is intended to reflect changes in the quiz content.</maml:para>
+      <maml:para>If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-PSQuizSchema</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Enter the path of the quiz json file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddLogo</maml:name>
+          <maml:description>
+            <maml:para>Add the logo setting. You will need to edit the file and specify the full path.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsProtected</maml:name>
+          <maml:description>
+            <maml:para>Add the protected metadata setting.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:description>
+            <maml:para>Get the updated quiz file.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddLogo</maml:name>
+        <maml:description>
+          <maml:para>Add the logo setting. You will need to edit the file and specify the full path.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsProtected</maml:name>
+        <maml:description>
+          <maml:para>Add the protected metadata setting.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Passthru</maml:name>
+        <maml:description>
+          <maml:para>Get the updated quiz file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>Enter the path of the quiz json file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSQuiz | Update-PSQuizSchema</dev:code>
+        <dev:remarks>
+          <maml:para>Get all quizzes in $PSQuizPath and update the schema to version 2.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-PSQuizSchema -Path C:\work\quizzes\Aliases.quiz.json -AddLogo -Passthru
+
+    Directory: C:\work\quizzes
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            7/6/2026  2:31 PM           1921 Aliases.quiz.json</dev:code>
+        <dev:remarks>
+          <maml:para>Update the quiz schema to v2 and add the logo setting which will need to be manually updated.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/740313</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Protect-PSQuizFile</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Unprotect-PSQuizFile</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

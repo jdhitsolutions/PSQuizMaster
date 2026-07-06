@@ -21,6 +21,8 @@ Remove-PSQuizSetting [-WhatIf] [-Confirm] [<CommonParameters>]
 
 When you run Set-PSQuizPath the command creates a JSON file under $HOME called .psquizsettings.json. Use this command if you want to delete the file. This will also set the value of $PSQuizPath back to the module default.
 
+If you have customized PSQuizTheme settings, you will get the default settings the next time you import the module.
+
 ## EXAMPLES
 
 ### Example 1

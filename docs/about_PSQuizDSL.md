@@ -1,0 +1,177 @@
+# PSQuizDSL
+## about_PSQuizDSL
+
+# SHORT DESCRIPTION
+
+The PSQuizMaster module includes a simple Domain Specific Language (DSL) that can be used to create a PSQuiz file.
+
+# LONG DESCRIPTION
+
+It is assumed that you will use the PSQuiz DSL commands in a PowerShell script file. The DSL simplifies the process of defining a quiz. Running the DSL commands in the script will create the quiz JSON file.
+
+## New-PSQuizFixture
+
+The recommended action is to use the New-PSQuizFixture command. This is modeled after Pester's New-Fixture command. It will create the outline of a quiz definition using the DSL. You must specify the descriptive name of your quiz and the path for the fixture script. The path must be a .ps1 file.
+
+```powershell
+New-PSQuizFixture -name "Variable Basics" -path c:\work\dsl\var-basics.ps1
+```
+
+Optionally, you can choose to protect the quiz by masking all answers, distractors, and notes. By default, the command will create 5 question placeholders. You can specify the number of questions if you wish.
+
+```powershell
+New-PSQuizFixture -name "Variable Basics" -path c:\work\dsl\var-basics.ps1 -protect -questions 3
+```
+
+This will create this script file:
+
+```powershell
+#requires -version 7.6
+#requires -module PSQuizMaster
+
+#This is a fixture for a new quiz file
+
+#usage: c:\work\dsl\var-basics.ps1
+
+<#
+  Use -protect to mask all answers, distractors, and notes
+  Do not include SpectreConsole formatting in the quiz. You also
+  do not need to escape square brackets. That will be handled
+  when the JSON file is created.
+#>
+
+Quiz 'Variable Basics' -protect @(
+    @{
+        Path        = # specify the full path to the quiz json file, e.g. c:\quizzes\subject.quiz.json
+        Author      = Jeff
+        Description = # add a meaningful one-line description
+    }
+    Question  @{
+        Question    = #What is your question
+        Answer      = #what is the correct answer
+        Distractors = #enter a comma-separated list of distractors
+        Note        = #enter an optional note with more information
+    }
+    Question  @{
+        Question    = #What is your question
+        Answer      = #what is the correct answer
+        Distractors = #enter a comma-separated list of distractors
+        Note        = #enter an optional note with more information
+    }
+    Question  @{
+        Question    = #What is your question
+        Answer      = #what is the correct answer
+        Distractors = #enter a comma-separated list of distractors
+        Note        = #enter an optional note with more information
+    }
+
+    <#
+        You can delete Note if not used
+        At least 4 distractors are recommended
+        You can delete this comment
+    #>
+)
+```
+
+Edit the script file in your preferred editor, save it, and then run the script file to create the quiz JSON file.
+
+If you import the module in the VS Code integrated editor and run `New-PSQuizFixture`, you can use the dynamic parameter `-UseEditor` which will open the new file in VS Code.
+
+### Quiz
+
+The Quiz keyword is a PSQuiz DSL command. It is used to define a PSQuiz. It is the top-level command you will use. Immediately after the Quiz keyword, specify the descriptive name for your quiz. If you wish to mask the details use -protect. Then define an array of quiz elements.
+
+The first item in the array must be a hashtable. The hashtable keys provide metadata information for the script file.
+
+```powershell
+Quiz 'Variable Basics' -protect @(
+        @{
+            Path        = # specify the full path to the quiz json file, e.g. c:\quizzes\subject.quiz.json
+            Author      = jeff
+            Description = # add a meaningful one-line description
+        }
+...
+)
+```
+
+The path will be the eventual location of the final quiz file. The file name should use the form subject.quiz.json.
+
+The author value will default to your user name. The description can be used to provide a slightly lengthier description. When you create the quiz file it will use the default version 0.1.0, which you can manually change.
+
+The remaining elements in the array will be Questions.
+
+### Question
+
+The Question keyword is a PSQuiz DSL command. It is used to create a quiz question in a PSQuiz fixture. A sample question looks like this:
+
+```powershell
+Question @{
+    Question    = 'What is the capital of New York state?'
+    Answer      = 'Albany'
+    Distractors = 'Buffalo', 'Rochester', 'Syracuse', 'Ithaca', 'New York City'
+}
+```
+
+You must specify a hashtable with the specified keys. The recommendation is to have at least four Distractors.
+
+You can also include an optional Note.
+
+```powershell
+Question @{
+    Question    = 'What is the highest point in New York state?'
+    Answer      = 'Mt Marcy'
+    Distractors = 'Empire State Building', 'Niagara Falls', 'Tug Hill Plateau', 'Mt Rushmore'
+    Note        = 'Mt Marcy is in the Adirondacks and stands at 5344 ft'
+}
+```
+
+The Note can be used to supply additional information. It will be displayed during a quiz after the user has made a choice.
+
+#### Mask
+
+You can opt to mask or protect the answer only.
+
+```powershell
+Question -mask @{
+    Question    = 'What is the highest point in New York state?'
+    Answer      = 'Mt Marcy'
+    Distractors = 'Empire State Building', 'Niagara Falls', 'Tug Hill plateau', 'Mt Rushmore'
+    Note        = 'Mt Marcy is in the Adirondacks and stands at 5344 ft'
+}
+```
+
+Will create this JSON output:
+
+```json
+{
+    "question": "What is the highest point in New York state?",
+    "answer": "077116 077097114099121",
+    "distractors": [
+        "Empire State Building",
+        "Niagara Falls",
+        "Tug Hill plateau",
+        "Mt Rushmore"
+    ],
+    "note": "Mt Marcy is in the Adirondacks and stands at 5344 ft"
+}
+```
+
+If you protect the quiz, then all answers, distractors, and notes are protected. You don't have mask individual questions. Even if you don't intend to mask portions of the quiz, avoid answers, distractors, or notes that are three digit numbers.
+
+# NOTE
+
+The PSQuiz fixture file can use variables and code to generate values, but the final output must be static JSON.
+
+There are sample PSQuiz fixture scripts in the module's dsl folder. Or view them online at https://github.com/jdhitsolutions/PSQuizMaster/tree/main/dsl
+
+# SEE ALSO
+
+- New-PSQuizFixture
+- New-PSQuizFile
+- New-PSQuizQuestion
+
+# KEYWORDS
+
+- PSQuiz
+- Quiz
+- Question

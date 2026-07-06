@@ -9,15 +9,16 @@ Function New-PSQuiz {
             Position = 0,
             HelpMessage = 'Specify the folder for the new quiz file. The default is $PSQuizPath.'
         )]
-        [ValidateScript({ Test-Path $_ })]
+        [ValidateScript({Test-Path -path $_},ErrorMessage = "Failed to find or validate {0}.")]
+        [PSDefaultValue()]
         [string]$Path = $PSQuizPath,
         [Parameter(HelpMessage = "Mask the answer so it is not displayed in plain text in the JSON file.")]
+        [alias("Protected")]
         [switch]$MaskAnswer
     )
     DynamicParam {
         # Open the new file in the current editor
-        If ($host.name -match 'code|ise') {
-
+        If ($host.name -eq 'Visual Studio Code Host') {
             $paramDictionary = New-Object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
 
             # Defining parameter attributes
@@ -39,7 +40,6 @@ Function New-PSQuiz {
         Write-Verbose "Starting $($MyInvocation.MyCommand)"
     } #Begin
     Process {
-
         $newQuizFileParams = @{
             Name        = Read-Host 'What is the full name of your quiz?'
             ShortName   = Read-Host 'What is the short quiz name? This will be used as part of the file name'
@@ -71,7 +71,8 @@ Function New-PSQuiz {
         } While ($r -eq 'Y')
 
         Write-Verbose "Adding $($questions.Count) questions to the quiz file"
-        Set-PSQuizFile -path $quizFile.FullName -Question $questions
+        #29 June 2026 add protected status to JSON metadata
+        Set-PSQuizFile -path $quizFile.FullName -Question $questions -Protected:$MaskAnswer
 
         Write-Verbose "Quiz file created at $($quizFile.FullName)"
         if ($PSBoundParameters.ContainsKey("UseEditor")) {
@@ -79,7 +80,7 @@ Function New-PSQuiz {
             psedit $quizFile.FullName
         }
         else {
-            Get-PSQuiz -name $newQuizFileParams.Name -path $Path
+            Get-PSQuiz -path $quizFile.FullName
         }
     } #Process
 

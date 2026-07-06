@@ -1,0 +1,70 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema-v2.json",
+  "metadata": {
+    "name": "PowerShell Objects",
+    "author": "Jeff Hicks",
+    "description": "A short quiz on using objects in PowerShell",
+    "version": "0.1.0",
+    "id": "9b3e983d-51b8-46b6-95d4-ded519218483",
+    "updated": "2026-06-29 17:07:00Z",
+    "protected": false
+  },
+  "questions": [
+    {
+      "question": "What can you use to have PowerShell treat a hashtable as an object?",
+      "answer": "[[PSCustomObject]]",
+      "distractors": [
+        "[[Array]]",
+        "(Object)",
+        "[[PSObject]]",
+        "-AsObject",
+        "$PSCmdlet"
+      ],
+      "note": ""
+    },
+    {
+      "question": "What is the best command for discovering information about an object?",
+      "answer": "Get-Member",
+      "distractors": [
+        "Add-Member",
+        "Out-Member",
+        "Select-Object",
+        "Measure-Object"
+      ],
+      "note": "Read the help for [lightCyan1]Get-Member[/] because there is much you can do with it."
+    },
+    {
+      "question": "What is the PowerShell concept that lets you pass an object from one command to another?",
+      "answer": "The pipeline",
+      "distractors": [
+        "Workflow",
+        "script blocks",
+        "hashtables",
+        "bash"
+      ],
+      "note": "The pipeline character is [salmon1 bold]|[/]"
+    },
+    {
+      "question": "What is the part of an object that [italic]describes[/] it?",
+      "answer": "property",
+      "distractors": [
+        "method",
+        "event",
+        "note",
+        "description"
+      ],
+      "note": ""
+    },
+    {
+      "question": "What is the part of an object to defines what it [italic]can do[/] or have [italic]done to it[/]?",
+      "answer": "method",
+      "distractors": [
+        "property",
+        "event",
+        "action",
+        "workflow"
+      ],
+      "note": "Use [lightCyan1]Get-Member[/] to discover an object's methods and properties."
+    }
+  ]
+}

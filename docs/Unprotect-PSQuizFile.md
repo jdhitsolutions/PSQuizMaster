@@ -21,6 +21,8 @@ Unprotect-PSQuizFile [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 
 If you masked answers in a PSQuiz file, you can use this command to update the file with unmasked answers and distractors. If the file has not been protected, nothing will be done.
 
+Running this command will also update the quiz schema to version 2.0, if necessary.
+
 ## EXAMPLES
 
 ### Example 1
@@ -30,21 +32,6 @@ PS C:\>  Unprotect-PSQuizFile C:\work\quizzes\remoting.quiz.json
 ```
 
 ## PARAMETERS
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Path
 Enter the path of the quiz json file.
@@ -69,6 +56,21 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named

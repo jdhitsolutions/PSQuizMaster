@@ -14,7 +14,7 @@ Update a quiz file.
 ## SYNTAX
 
 ```yaml
-Set-PSQuizFile [-Path] <String> [-Name <String>] [-Author <String>] [-Version <String>] [-Description <String>] [-Updated <DateTime>] [-Question <Object[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-PSQuizFile [-Path] <String> [-Name <String>] [-Author <String>] [-Version <String>] [-Description <String>] [-Updated <DateTime>] [-Question <Object[]>] [-Protected] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,22 +39,6 @@ Enter a new author for your quiz.
 Type: String
 Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
 
 Required: False
 Position: Named
@@ -160,6 +144,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Protected
+Items are masked or protected.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 
 Shows what would happen if the cmdlet runs.
@@ -169,6 +168,22 @@ The cmdlet is not run.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named
@@ -201,4 +216,3 @@ https://jdhitsolutions.com/yourls/newsletter
 [New-PSQuiz](New-PSQuiz.md)
 
 [New-PSQuizFile](New-PSQuizFile.md)
-
