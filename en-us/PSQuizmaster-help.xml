@@ -2448,8 +2448,8 @@ C:\work\quizzes\</dev:code>
     </command:details>
     <maml:description>
       <maml:para>Version 2.0 of this module introduced new features and a new schema version. Quizzes created with this version of the module will use the new schema. If you have existing quizzes, you may want to update the schema. There are several options.</maml:para>
-      <maml:para>First, if you protect with `Protect-PSQuizFile` or unprotect with `Unprotect-PSQuizFile`, the schema setting automatically be updated to v2.</maml:para>
-      <maml:para>Your other option is to use the `Update-PSQuizSchema` (docs/Update-PSQuizSchema.md)command. In addition to updating the schema setting, you can opt to the `protected` metadata setting and the new `logo` setting. You should verify the `protected` setting is accurate. You will need to manually enter to complete path to the logo image file.</maml:para>
+      <maml:para>First, if you protect with Protect-PSQuizFile or unprotect with Unprotect-PSQuizFile, the schema setting automatically be updated to v2.</maml:para>
+      <maml:para>Your other option is to use this command. In addition to updating the schema setting, you can opt to the protected metadata setting and the new logo setting. You should verify the protected setting is accurate. You will need to manually enter to complete path to the logo image file.</maml:para>
       <maml:para>If you update the schema, you should update the internal version number of your quiz. Updating the schema will not change the Updated property. That is intended to reflect changes in the quiz content.</maml:para>
       <maml:para>If you import the PSQuiz module in the VS Code integrated PowerShell terminal, you will able to use the dynamic parameter -UseEditor. This will open the new file in VS Code.</maml:para>
     </maml:description>

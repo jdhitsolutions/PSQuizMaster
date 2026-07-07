@@ -7,7 +7,10 @@
 
 <#
   Use -protect to mask all answers, distractors, and notes
-  distractors, and notes.
+  Do not include SpectreConsole formatting in the quiz data
+  here. You also can insert formatting in the quiz json file.
+  You also do not need to escape square brackets. That will
+  be handled when the JSON file is created.
 #>
 
 Quiz 'PowerShell Objects' @(

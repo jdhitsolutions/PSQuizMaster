@@ -2,6 +2,8 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSQuizMaster.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSQuizMaster/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSQuizMaster.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSQuizMaster/)
 
+![Photo by Leeloo The First from Pexels: https://www.pexels.com/photo/question-marks-on-paper-crafts-5428836/](assets/pexels-leeloo-thefirst-5428833.jpg)
+
 This PowerShell module consists of two parts, commands to generate quizzes or testing material, and commands for taking a quiz. Quiz files are stored as JSON documents. As of version 2.0.0, this module requires a PowerShell 7 platform. If you must use Windows PowerShell, install version 1.3.0 from the PowerShell Gallery, although that version lacks new features such as the DSL and theme support.
 
 ## Installation
@@ -37,12 +39,11 @@ Install-PSResource PSQuizMaster -Repository PSGallery -TrustRepository
 | [Set-PSQuizFile](docs/Set-PSQuizFile.md) | | Update a quiz file. |
 | [Set-PSQuizPath](docs/Set-PSQuizPath.md) | *Save-PSQuizSettings* | Save the user's PSQuizPath and psQuizTheme settings to a file. |
 | [Unprotect-PSQuizFile](docs/Unprotect-PSQuizFile.md) | | Unmask answers in a PSQuiz file. |
-| [Update-PSQuizSchema](docs/Update-PSQuizSchema.md) | | Update the schema for a PSQuiz file.
- |
+| [Update-PSQuizSchema](docs/Update-PSQuizSchema.md) | | Update the schema for a PSQuiz file. |
 
 Most commands should work cross-platform.
 
-Beginning with v2.0.0, the [pwshSpectreConsole](https://pwshspectreconsole.com/) module is now a dependency and will be installed if not found.
+Beginning with v2.0.0, the [pwshSpectreConsole](https://pwshspectreconsole.com/) module is now a dependency and will be installed from the PowerShell Gallery if not found.
 
 ## Design
 
@@ -82,7 +83,7 @@ Path        : C:\Scripts\PSQuizMaster\quizzes\remoting.quiz.json
 
 This will create this JSON file.
 
-```json
+```JSON
 {
     "$schema": "https://raw.githubusercontent.com/jdhitsolutions/PSQuizMaster/main/psquiz.schema-v2.json",
   "metadata": {
@@ -127,11 +128,11 @@ You can also use the `New-PSQuizFile` command to create a quiz file and then use
 
 ## Protecting Quizzes
 
-Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process. Version 1.3.0 of this module also protects distractors.
+Because quizzes are stored as plaintext JSON files, the answers are easily discovered. If you want to deter casual "cheating" you can use `Protect-PSQuizFile` to mask the answers. The technique used to hide the answer isn't complicated or fancy. You can use `Unprotect-PSQuizFile` to revert the process. Version 1.3.0 and later of this module also protects distractors.
 
 When you run the these commands, a new JSON metadata setting called `protected` will be set.
 
-Even though you can mask individual questions, it is recommended that if you want to hide the answer, then protect the entire file. You can use the VSCode editor integrations to mask and unmask items.
+Even though you can mask individual questions, it is recommended that if you want to hide the answer, then protect the entire file. You can use the VSCode editor integrations to mask and unmask individual items.
 
 ## Quiz Theming and Style
 
@@ -140,7 +141,7 @@ Version 2.0 added the pwshSpectreConsole module as a dependency to make it easie
 ```powershell
 PS C:\> $PSQuizTheme
 
-Title       : PaleTurquoise1 bold         # The quiz title style
+Title       : PaleTurquoise1 bold         #The quiz title style
 Question    : SeaGreen2                   #The question number style
 Correct     : Chartreuse1                 #The style for Correct
 Incorrect   : DeepPink2                   #The style for Incorrect
@@ -153,11 +154,17 @@ The object has a method called `Show()` which will display the SpectreConsole va
 
 ![Show PSQuizTheme](assets/psquiztheme-show.png)
 
-You can modify any of the properties using any valid SpectreConsole color that you see with `Get-SpectreDemoColors`. To keep them as your default, run `Set-PSQuizPath` or its alias `Save-PSQuizSettings` to store them in the settings JSON file.
+You can modify any of the properties using any valid SpectreConsole color that you see with `Get-SpectreDemoColors`. If you want to include a style add it like this:
 
-You can use SpectreConsole styles in your quiz file to add emphasis.
+```powershell
+$PSQuizTheme.title = "LightSteelBlue1 Italic"
+```
 
-```json
+To keep them as your default, run `Set-PSQuizPath` or its alias `Save-PSQuizSettings` to store them in the settings JSON file.
+
+You can use SpectreConsole styles in your quiz file to add emphasis. Don't forget the closing `[/]`.
+
+```JSON
  {
   "question": "What PSDrive shows PowerShell aliases?",
   "answer": "Alias",
@@ -171,7 +178,7 @@ You can use SpectreConsole styles in your quiz file to add emphasis.
 }
 ```
 
-> *If you want to protect your quiz, add style settings first.*
+> *If you want to protect your quiz, add style settings before masking items.*
 
 ### Logo Images
 
@@ -179,19 +186,21 @@ Quizzes now display a formatted quiz header with a default image displayed insid
 
 ![default quiz logo](assets/default-quiz-logo.png)
 
-However, you can define a logo image on a per-quiz basis by editing or adding the `logo` property.
+However, you can define a logo image on a __per-quiz__ basis by editing or adding the `logo` property.
 
-```json
-  "questions": [
-  ],
-  "logo": "c:\\scripts\\db.png"
+```JSON
+"questions": [
+],
+"logo": "c:\\scripts\\db.png"
 ```
 
-The value must be the full path to the image file. You should avoid using variables and PSDrives. Note that the image will be scaled to a maximum width of 10.
+The value must be the full path to the image file. You should avoid using variables and PSDrives. Remember to escape the slashes in JSON.
+
+Note that the image will be scaled to a maximum width of 10.
 
 ![Using a custom logo](assets/custom-logo.png)
 
-If the image file is not found, the module default will be used.
+If the image file is not found or defined, the default module logo will be used.
 
 ### Design Recommendations
 
@@ -225,13 +234,15 @@ The command will create this PowerShell script file.
 
 <#
   Use -protect to mask all answers, distractors, and notes
-  Even if you don't intend to mask anything, avoid 3 digit answers,
-  distractors, and notes.
+  Do not include SpectreConsole formatting in the quiz data
+  here. You also can insert formatting in the quiz JSON file.
+  You also do not need to escape square brackets. That will
+  be handled when the JSON file is created.
 #>
 
 Quiz 'PowerShell 7 Basics Quiz' -protect @(
     @{
-        Path        = # specify the full path to the quiz json file, e.g. c:\quizzes\subject.quiz.json
+        Path        = # specify the full path to the quiz JSON file, e.g. c:\quizzes\subject.quiz.json
         Author      = Jeff
         Description = # add a meaningful one-line description
     }
@@ -278,7 +289,7 @@ All you need to do is define the quiz metadata and the questions.
 
 If you import the module in the VS Code integrated editor and run `New-PSQuizFixture`, you can use the dynamic parameter `-UseEditor` which will open the new file in VS Code.
 
-Read the help topic [about_PSQuizDSL](docs/about_PSQuizDSL.md) to learn more.
+Read the help topic [about_PSQuizDSL](docs/about_PSQuizDSL.md) to learn more on using the DSL.
 
 ## Editor Integrations
 
@@ -318,7 +329,7 @@ When editing a quiz JSON file, the `Updated` property needs to follow a specific
 
 You can also manually add the JSON for a new question directly in the file using `Insert Quiz item`. The command will insert this JSON at your cursor.
 
-```json
+```JSON
     {
     "question" : "<enter your question>",
     "answer" : "<the correct answer>",
@@ -349,7 +360,7 @@ New-PSQuizFile -Name "Using CIM" -ShortName cim -Path c:\work\quizzes -Author "J
 You could then use code like this to generate quiz questions.
 
 ```PowerShell
- New-PSQuizQuestion | ConvertTo-Json | Set-Clipboard
+ New-PSQuizQuestion | ConvertTo-JSON | Set-Clipboard
 ```
 
 Paste the question into the JSON file and repeat.
@@ -368,17 +379,17 @@ If the settings JSON file does not exist, the value will be set to the `Quizzes`
 
 Beginning with version 2.0.0, the module also supports style customizations through the pwshSpectreConsole module. A new hashtable, $psQuizTheme, is created when you load the module. You can manually change theme settings. Running this command will also save the theme settings to the JSON file. The next time you import the module, the saved theme settings will also be imported.
 
-This command has an alias of Save-PSQuizSettings to reflect this change in functionality.
+This command has an alias of `Save-PSQuizSettings` to reflect this change in functionality.
 
 ## Sample Quizzes
 
 The module contains several sample quizzes you can find in the [Quizzes](quizzes) folder. If you don't change the value of `$PSQuizPath` you should be able to find them with `Get-PSQuiz`.
 
-If you have changed the path location, you can use `Copy-PSSampleQuiz` to copy the samples to the new destination.
+If you have changed the default path location, you can use `Copy-PSSampleQuiz` to copy the samples to the new destination.
 
 ## Taking a Quiz
 
-To take a quiz, use `Invoke-PSQuiz`. You need to specify the full path to the JSON file. By default, the function will tab-complete quiz files found in $PSQuizPath.
+To take a quiz, use `Invoke-PSQuiz`. You need to specify the full path to the JSON file. By default, the function will tab-complete quiz files found in `$PSQuizPath`.
 
 ![Invoke-PSQuiz](assets/Invoke-PSQuiz.png)
 

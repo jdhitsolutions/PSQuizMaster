@@ -4,99 +4,77 @@
     "name": "PowerShell Remoting",
     "author": "Jeff Hicks",
     "description": "A short quiz on PowerShell remoting concepts.",
-    "protected" : false,
-    "version": "0.4.0",
+    "version": "0.6.0",
     "id": "32248289-3ca9-4fb6-acde-524c809bf50e",
-    "updated": "2026-07-03 14:04:40Z"
+    "updated": "2026-07-07 18:41:20Z",
+    "protected": true
   },
-  "logo" : "c:\\scripts\\gazoo.bmp",
   "questions": [
     {
-      "question": "What command do you run to enter an interactive remoting session?",
-      "answer": "Enter-PSSession",
+      "question": "What command do you run to [Aqua]enter[/] an [italic gold1]interactive[/] remoting session?",
+      "answer": "069110116101114045080083083101115115105111110",
       "distractors": [
-        "New-PSSession",
-        "New-CimSession",
-        "Enter-CimSession",
-        "Winrm"
+        "078101119045080083083101115115105111110",
+        "078101119045067105109083101115115105111110",
+        "069110116101114045067105109083101115115105111110",
+        "087105110114109"
       ],
-      "note": "Don't confuse PSSessions with CimSessions."
+      "note": "068111 110111116 099111110102117115101 080083083101115115105111110115 119105116104 067105109083101115115105111110115046"
     },
     {
       "question": "What is the default PowerShell remoting port?",
       "answer": "5985",
       "distractors": [
-        "5986",
-        "22",
-        "80",
-        "443"
+        "050050",
+        "056048"
       ],
       "note": "If using SSL, the default port will be 5986."
     },
     {
       "question": "What PSDrive contains remoting configuration?",
-      "answer": "WSMan",
+      "answer": "087083077097110",
       "distractors": [
-        "CimSession",
-        "WinRM",
-        "Remoting",
-        "Remote"
+        "067105109083101115115105111110",
+        "087105110082077",
+        "080083082101109111116101",
+        "082101109111116101",
+        "083083072"
       ],
-      "note": "You will need elevated privileges to modify this drive."
+      "note": "089111117 119105108108 110101101100 101108101118097116101100 112114105118105108101103101115 116111 109111100105102121 116104105115 100114105118101046"
     },
     {
-      "question": "What command do you run to create a PSSession?",
-      "answer": "New-PSSession",
+      "question": "What command do you run to create a new PSSession?",
+      "answer": "078101119045080083083101115115105111110",
       "distractors": [
-        "New-CimSession",
-        "New-WSManSession",
-        "New-RemoteSession",
-        "Add-PSSession",
-        "Invoke-Command"
+        "078101119045067105109083101115115105111110",
+        "078101119045087083077097110083101115115105111110",
+        "078101119045082101109111116101083101115115105111110",
+        "073110118111107101045067111109109097110100"
       ],
       "note": ""
     },
     {
       "question": "What is the advantage of PowerShell remoting over legacy protocols?",
-      "answer": "Remoting uses a single port and is encrypted by default.",
+      "answer": "082101109111116105110103 117115101115 097 115105110103108101 112111114116 097110100 105115 101110099114121112116101100 098121 100101102097117108116046",
       "distractors": [
-        "PowerShell Remoting allows any user to connect.",
-        "PowerShell Remoting and legacy remoting protocols are the same.",
-        "PowerShell Remoting doesn't require WMI",
-        "PowerShell Remoting only creates persistent connections."
+        "080111119101114083104101108108 082101109111116105110103 097108108111119115 097110121 117115101114 116111 099111110110101099116046",
+        "080111119101114083104101108108 082101109111116105110103 097110100 108101103097099121 114101109111116105110103 112114111116111099111108115 097114101 116104101 115097109101046",
+        "080111119101114083104101108108 082101109111116105110103 100111101115110039116 114101113117105114101 087077073",
+        "080111119101114083104101108108 082101109111116105110103 111110108121 099114101097116101115 112101114115105115116101110116 099111110110101099116105111110115046"
       ],
-      "note": "Read about_remote to learn more."
+      "note": "082101097100 116104101 097098111117116095114101109111116101 116111 108101097114110 109111114101046"
     },
     {
-      "question": "What PSDrive can you use to manage your remoting configuration?",
-      "answer": "WSMan",
+      "question": "What PowerShell feature is [fuchsia]not[/] available in a remote session?",
+      "answer": "080111119101114083104101108108 112114111102105108101 115099114105112116115",
       "distractors": [
-        "SSH",
-        "PSSession",
-        "WinRM",
-        "Remote"
+        "080083068114105118101115",
+        "065108105097115101115",
+        "086097114105097098108101115",
+        "084104101114101 097114101 110111 108105109105116097116105111110115",
+        "074069065"
       ]
-    },
-    {
-      "question": "By default, who can use a PowerShell remoting session to connect to a remote machine?",
-      "answer": "Administrators of the remote machine",
-      "distractors": [
-        "Domain Users",
-        "No one. User's must be explicitly given permission.",
-        "The registered user",
-        "The default managed service account for the WinRM service."
-      ]
-    },
-    {
-      "question": "What is the best command to use to run PowerShell code on multiple remote computers at the same time?",
-      "answer": "Invoke-Command",
-      "distractors": [
-        "Start-Job",
-        "Start-ThreadJob",
-        "Trace-Command",
-        "Invoke-WSmanAction"
-      ],
-      "note": "You can throttle the number of computers processed at the same time to reduce network traffic."
     }
-  ]
+  ],
+  "logo": "S:\\db.png"
 }

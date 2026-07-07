@@ -22,9 +22,9 @@ Update-PSQuizSchema [-Path] <String> [-IsProtected] [-AddLogo] [-Passthru]
 
 Version 2.0 of this module introduced new features and a new schema version. Quizzes created with this version of the module will use the new schema. If you have existing quizzes, you may want to update the schema. There are several options.
 
-First, if you protect with `Protect-PSQuizFile` or unprotect with `Unprotect-PSQuizFile`, the schema setting automatically be updated to v2.
+First, if you protect with Protect-PSQuizFile or unprotect with Unprotect-PSQuizFile, the schema setting automatically be updated to v2.
 
-Your other option is to use the [`Update-PSQuizSchema`](docs/Update-PSQuizSchema.md) command. In addition to updating the schema setting, you can opt to the `protected` metadata setting and the new `logo` setting. You should verify the `protected` setting is accurate. You will need to manually enter to complete path to the logo image file.
+Your other option is to use this command. In addition to updating the schema setting, you can opt to the protected metadata setting and the new logo setting. You should verify the protected setting is accurate. You will need to manually enter to complete path to the logo image file.
 
 If you update the schema, you should update the internal version number of your quiz. Updating the schema will not change the Updated property. That is intended to reflect changes in the quiz content.
 

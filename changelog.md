@@ -1,7 +1,11 @@
 # Changelog for PSQuizMaster
 
 ## [Unreleased]
+
+## [2.0.0] - 2026-07-07
+
 ### Added
+
 - Created v2 of the quiz JSON schema.
 - Added `Update-PSQuizSchema` to update the quiz JSON schema version.
 - Added a `Menu` parameter to `Get-PSQuiz` to display a list of quizzes using `Read-SpectreSelection`.
@@ -9,6 +13,7 @@
 - Added `New-PSQuizFixture` to create a DSL template.
 
 ### Changed
+
 - Updated `Protect-PSQuizFile` and `Unprotect-PSQuizFile` to update the JSON schema to v2 if necessary. __This is a potential breaking change__.
 - Revised `Invoke-PSQuiz` to not run if the VSCode integrated terminal is detected. This host doesn't support Spectre images. __This is a breaking change__.
 - Updated code to invoke quiz to use a SpectreRule line.
@@ -29,6 +34,7 @@
 - Update `README`.
 
 ### Fixed
+
 - Fixed the grading code to gracefully handle situations where the user may quit before answering any questions.
 - Updated commands to use cross-platform supported environmental variables.
 - Fixed prompt when running a quiz to show the correct number of possible choices.
@@ -133,7 +139,8 @@ This is the first version published to the PowerShell Gallery.
 
 - initial module files
 
-[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.3.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v2.0.0..HEAD
+[2.0.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.3.0..v2.0.0
 [1.3.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/jdhitsolutions/PSQuizMaster/compare/v1.0.0..v1.1.0

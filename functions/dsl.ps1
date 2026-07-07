@@ -236,9 +236,10 @@ Function New-PSQuizFixture {
 
 <#
   Use -protect to mask all answers, distractors, and notes
-  Do not include SpectreConsole formatting in the quiz. You also
-  do not need to escape square brackets. That will be handled 
-  when the JSON file is created.
+  Do not include SpectreConsole formatting in the quiz data 
+  here. You also can insert formatting in the quiz json file. 
+  You also do not need to escape square brackets. That will 
+  be handled when the JSON file is created.
 #>
 
 Quiz '$Name' $protectString @(

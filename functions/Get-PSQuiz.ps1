@@ -3,13 +3,12 @@
 <#
 #add a cancel option to the list
 Add a menu
-get-psquiz |
-Select *,@{Name="info";Expression = {"{0} - {1}" -f $_.Name,$_.Description}} |
+Get-PSQuiz |
+Select-Object *,@{Name="info";Expression = {"{0} - {1}" -f $_.Name,$_.Description}} |
 Read-SpectreSelection -Title "Select a quiz" -ChoiceLabelProperty Info -PageSize 10  -Color Gold1
 
 #>
 
-#TODO: Fix this. There should be parameter sets
 Function Get-PSQuiz {
     [CmdletBinding(DefaultParameterSetName = "path")]
     [OutputType('psQuiz')]
